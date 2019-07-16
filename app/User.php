@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\SMSCreated;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Passport\HasApiTokens;
@@ -9,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+//    use Notifiable;
     use HasApiTokens, Notifiable;
 
     /**
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'phone'
     ];
 
     /**
@@ -45,6 +46,9 @@ class User extends Authenticatable
 
         $random_number = rand(pow(10, $digit - 1), pow(10, $digit) - 1);
 
-        event(new SMSCreated($random_number , $this->phone));
+        $this->code = $random_number;
+        $this->save();
+
+        event(new SMSCreated($random_number, $this->phone));
     }
 }

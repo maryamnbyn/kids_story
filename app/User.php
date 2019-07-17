@@ -40,15 +40,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function sendSMS($digit = null)
+    public function devices()
+    {
+        return $this->belongsToMany(Device::class );
+    }
+
+    public function sendSMS($UUID = null, $digit = null)
     {
         if (is_null($digit)) $digit = config('verify.digit');
 
         $random_number = rand(pow(10, $digit - 1), pow(10, $digit) - 1);
 
-        $this->code = $random_number;
-        $this->save();
+        $device =  $this->devices()->where('uu_id', $UUID)->first();
 
-        event(new SMSCreated($random_number, $this->phone));
+        if (! empty($device)) {
+
+            $device->update(['code' => $random_number]);
+
+        } else {
+
+            ($this->devices())->create(['uu_id' => $UUID , 'code' =>$random_number ]);
+        }
+
+        event(new SMSCreated($random_number , $this->phone));
     }
 }

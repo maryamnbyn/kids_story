@@ -25,5 +25,6 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
 
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
+    Route::post('/register/verify', 'UserController@verificationRegister');
 
 });

@@ -16,8 +16,10 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'phone' => 'unique:users|max:14|regex:/(09)[0-9]{9}/',
+            'phone' => 'unique:users|max:14||regex:/(09)[0-9]{9}/',
+            'uu_id' => 'required',
         ]);
+
         if ($validator->fails()) {
 
             return Response()->json([
@@ -26,9 +28,11 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::create($request->all());
+        $user = User::create([
+            'phone' => $request->phone,
+        ]);
 
-        $user->sendSMS();
+        $user->sendSMS($request->uu_id);
 
         return response()->json([
             'code' => $this->successStatus,
@@ -40,6 +44,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'phone' => 'required|regex:/(09)[0-9]{9}/',
+            'uu_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -60,13 +65,66 @@ class UserController extends Controller
             ]);
         }
 
-        $user->sendSMS();
+        $user->sendSMS($request->uu_id);
 
         return response()->json([
             'code' => $this->successStatus,
             'message' => 'کد جدید برایش ارسال شد!',
         ]);
 
+    }
+
+    public function verificationRegister(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required|min:4',
+            'uu_id' => 'required',
+            'phone' => 'required|regex:/(09)[0-9]{9}/',
+        ]);
+
+        if ($validator->fails()) {
+
+            return Response()->json([
+                'code' => $this->failedStatus,
+                'message' => $validator->errors()->first()
+            ]);
+        }
+
+        $user = User::where('phone', $request->phone)->first();
+
+        if ($user instanceof User) {
+
+            $userFirebase = $user->devices()->where('uu_id', $request->uu_id)
+                ->where('code', $request->code)
+                ->first();
+
+            if (!is_null($userFirebase)) {
+
+                $token = $user->createToken('MyApp')->accessToken;
+
+                $userFirebase->update([
+                    'token' => $token
+                ]);
+
+                return Response()->json([
+                    'code' => $this->successStatus,
+                    'message' => 'کاربر کد را به درستی وارد کرده و ورود موفق',
+                    'data' => $token,
+                ]);
+
+            } else
+
+                return Response()->json([
+                    'code' => $this->failedStatus,
+                    'message' => 'کد صحیح نمی باشد',
+                ]);
+        } else {
+
+            return Response()->json([
+                'code' => $this->failedStatus,
+                'message' => 'این شماره صحبح نمی باشد',
+            ]);
+        }
     }
 
 }

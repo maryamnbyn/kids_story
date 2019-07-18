@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\User;
-use Ipecompany\Smsirlaravel\Smsirlaravel;
+
 
 class UserController extends Controller
 {
@@ -32,7 +32,7 @@ class UserController extends Controller
             'phone' => $request->phone,
         ]);
 
-        $user->sendSMS($request->uu_id);
+        $user->sendSMS($request->name,$request->uu_id);
 
         return response()->json([
             'code' => $this->successStatus,
@@ -94,15 +94,15 @@ class UserController extends Controller
 
         if ($user instanceof User) {
 
-            $userFirebase = $user->devices()->where('uu_id', $request->uu_id)
+            $check_user_code = $user->devices()->where('uu_id', $request->uu_id)
                 ->where('code', $request->code)
                 ->first();
 
-            if (!is_null($userFirebase)) {
+            if (!is_null($check_user_code)) {
 
                 $token = $user->createToken('MyApp')->accessToken;
 
-                $userFirebase->update([
+                $check_user_code->update([
                     'token' => $token
                 ]);
 

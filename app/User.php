@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Events\SMSCreated;
+use App\Jobs\sendSMSVerificationJob;
+use App\Jobs\SendWelcomSmsJob;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -45,14 +45,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Device::class );
     }
 
-    public function sendSMS($UUID = null, $digit = null)
+    public function sendSMS($name = null , $UUID = null, $digit = null)
     {
         if (is_null($digit)) $digit = config('verify.digit');
 
         $random_number = rand(pow(10, $digit - 1), pow(10, $digit) - 1);
 
         $device =  $this->devices()->where('uu_id', $UUID)->first();
-
         if (! empty($device)) {
 
             $device->update(['code' => $random_number]);
@@ -61,7 +60,9 @@ class User extends Authenticatable
 
             ($this->devices())->create(['uu_id' => $UUID , 'code' =>$random_number ]);
         }
-
-        event(new SMSCreated($random_number , $this->phone));
-    }
+        $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
+//        event(new SMSCreated($random_number , $this->phone));
+        sendSMSVerificationJob::dispatch($random_number,$this->phone);
+        SendWelcomSmsJob::dispatch($text,$name,$this->phone)->delay(now()->addMinute('5'));
+}
 }

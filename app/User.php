@@ -60,9 +60,8 @@ class User extends Authenticatable
 
             ($this->devices())->create(['uu_id' => $UUID , 'code' =>$random_number ]);
         }
-        $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
-//        event(new SMSCreated($random_number , $this->phone));
+
         sendSMSVerificationJob::dispatch($random_number,$this->phone);
-        SendWelcomSmsJob::dispatch($text,$name,$this->phone)->delay(now()->addMinute('5'));
+
 }
 }

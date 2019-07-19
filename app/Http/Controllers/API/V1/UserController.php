@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Jobs\SendWelcomSmsJob;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +33,7 @@ class UserController extends Controller
             'phone' => $request->phone,
         ]);
 
-        $user->sendSMS($request->name,$request->uu_id);
+        $user->sendSMS($request->name, $request->uu_id);
 
         return response()->json([
             'code' => $this->successStatus,
@@ -105,6 +106,10 @@ class UserController extends Controller
                 $check_user_code->update([
                     'token' => $token
                 ]);
+
+                $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
+
+                SendWelcomSmsJob::dispatch($text, $user->phone);
 
                 return Response()->json([
                     'code' => $this->successStatus,

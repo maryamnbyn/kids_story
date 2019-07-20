@@ -107,9 +107,9 @@ class UserController extends Controller
                     'token' => $token
                 ]);
 
-                $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
+//                $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
 
-                SendWelcomSmsJob::dispatch($text, $user->phone);
+                SendWelcomSmsJob::dispatch('messages.text', $user->phone);
 
                 return Response()->json([
                     'code' => $this->successStatus,

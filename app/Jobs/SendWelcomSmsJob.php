@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Ipecompany\Smsirlaravel\Smsirlaravel;
 
-class SendWelcomSmsJob implements ShouldQueue
+class SendWelcomSmsJob
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

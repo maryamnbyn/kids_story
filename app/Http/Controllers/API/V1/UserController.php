@@ -109,7 +109,7 @@ class UserController extends Controller
 
 //                $text = 'کاربر گرامی به اپلیکیشن قصه های کودک خوش امدید .  شرکت ارتباطات سیار سیمرغ  شماره ی پشتیبانی: 021123456789 ';
 
-                SendWelcomSmsJob::dispatch('messages.text', $user->phone);
+                SendWelcomSmsJob::dispatch(trans('messages.text'), $user->phone);
 
                 return Response()->json([
                     'code' => $this->successStatus,

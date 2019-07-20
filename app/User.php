@@ -45,11 +45,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Device::class );
     }
 
-    public function sendSMS($name = null , $UUID = null, $digit = null)
+    public function sendSMS($UUID = null)
     {
-        if (is_null($digit)) $digit = config('verify.digit');
-
-        $random_number = rand(pow(10, $digit - 1), pow(10, $digit) - 1);
+        $random_number = random_int(10000, 99999);
 
         $device =  $this->devices()->where('uu_id', $UUID)->first();
         if (! empty($device)) {
@@ -64,4 +62,23 @@ class User extends Authenticatable
         sendSMSVerificationJob::dispatch($random_number,$this->phone);
 
 }
+
+    public function sendSMSUpdate($UUID ,$phone)
+    {
+        $random_number = random_int(10000, 99999);
+
+        $device =  $this->devices()->where('uu_id', $UUID)->first();
+
+        if (! empty($device)) {
+
+            $device->update(['code' => $random_number]);
+
+        } else {
+
+            ($this->devices())->create(['uu_id' => $UUID , 'code' =>$random_number ]);
+        }
+
+        sendSMSVerificationJob::dispatch($random_number,$phone);
+
+    }
 }

@@ -26,5 +26,27 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::post('/register/verify', 'UserController@verificationRegister');
+    Route::get('download/{filename}', 'StoryController@Downloadlink');
 
+});
+
+
+
+Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:api'], function () {
+
+    //User Route token
+
+    Route::post('/user/edit', 'UserController@update');
+    Route::post('/user/info', 'UserController@info');
+    Route::post('/update/verify', 'UserController@verificationUpdate');
+    Route::post('/logout', 'UserController@logout');
+
+
+    //story Route token
+
+    Route::get('/stories/{story}', 'StoryController@show');
+    Route::post('/stories', 'StoryController@store');
+    Route::get('/stories', 'StoryController@index');
+    Route::post('/stories/update/{story}', 'StoryController@update');
+    Route::post('/stories/destroy/{story}', 'StoryController@destroy');
 });

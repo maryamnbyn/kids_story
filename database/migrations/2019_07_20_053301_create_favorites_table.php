@@ -17,6 +17,7 @@ class CreateFavoritesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('story_id');
+            $table->string('story_name');
             $table->timestamps();
         });
     }

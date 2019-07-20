@@ -17,6 +17,7 @@ class CreateDownloadsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('story_id');
+            $table->string('link');
             $table->timestamps();
         });
     }

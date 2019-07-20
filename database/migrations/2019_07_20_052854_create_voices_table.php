@@ -16,6 +16,7 @@ class CreateVoicesTable extends Migration
         Schema::create('voices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('story_id');
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    /**
-     * @param makeUserRequest $request
-     * @return mixed
-     */
     public function register(RegisteRequest $request)
     {
         $user = User::create([
@@ -127,7 +123,7 @@ class UserController extends Controller
             $token = Auth::user()->createToken('MyApp')->accessToken;
 
             $device->update([
-                'token' => $token
+                'firebase_token' => $token
             ]);
 
             $user->update([

@@ -13,7 +13,7 @@ class ResponseJson
 {
     public static $code = 1;
     public static $message = 'successfully';
-    public static $data = null;
+    public static $data = "";
 
     public static function code($code)
     {

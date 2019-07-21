@@ -27,6 +27,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
     Route::post('/login', 'UserController@login');
     Route::post('/register/verify', 'UserController@verificationRegister');
     Route::get('download/{filename}', 'StoryController@Downloadlink');
+    Route::get('/stories/search', 'StoryController@search');
 
 });
 
@@ -40,11 +41,14 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
     Route::post('/user/info', 'UserController@info');
     Route::post('/update/verify', 'UserController@verificationUpdate');
     Route::post('/logout', 'UserController@logout');
+    Route::post('/user/name', 'UserController@setUserName');
+
 
 
     //story Route token
 
     Route::get('/stories/{story}', 'StoryController@show');
+//    Route::get('/stories/search', 'StoryController@search');
     Route::post('/stories', 'StoryController@store');
     Route::get('/stories', 'StoryController@index');
     Route::post('/stories/update/{story}', 'StoryController@update');

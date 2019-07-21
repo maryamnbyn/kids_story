@@ -11,8 +11,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
-
 class UserController extends Controller
 {
 
@@ -25,7 +23,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-         return ResponseJson::code(-1)->message($validator->errors()->first())->get();
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
 
         }
 
@@ -35,7 +33,7 @@ class UserController extends Controller
 
         $user->sendSMS($request->uu_id);
 
-       return ResponseJson::message('کاربر جدید بوده و کد برایش ارسال شد!')->get();
+        return ResponseJson::message('کاربر جدید بوده و کد برایش ارسال شد!')->get();
 
     }
 
@@ -95,8 +93,6 @@ class UserController extends Controller
                     'firebase_token' => $token
                 ]);
 
-                SendWelcomSmsJob::dispatch(trans('messages.text'), $user->phone);
-
                 return ResponseJson::message('کاربر کد را به درستی وارد کرده و ورود موفق')->data($token)->get();
 
             } else
@@ -118,12 +114,14 @@ class UserController extends Controller
 
             return ResponseJson::code(-1)->message($validator->errors()->first())->get();
         }
+
         $usr = Auth::user();
         $usr->name = $request->name;
 
         if (empty($request->phone)) {
 
             $usr->save();
+
             return ResponseJson::message('تغییر نام انجام شد')->get();
 
         }
@@ -207,4 +205,25 @@ class UserController extends Controller
         ])->get();
 
     }
+
+    public function setUserName(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
+        }
+
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->save();
+
+        SendWelcomSmsJob::dispatch(trans('messages.text', ['user' => $request->name]), $user->phone);
+
+        return ResponseJson::message('تغییر نام کاربر')->get();
+    }
+
 }

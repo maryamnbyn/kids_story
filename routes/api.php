@@ -27,7 +27,10 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
     Route::post('/login', 'UserController@login');
     Route::post('/register/verify', 'UserController@verificationRegister');
     Route::get('download/{filename}', 'StoryController@Downloadlink');
+
+    //story
     Route::get('/stories/search', 'StoryController@search');
+
 
 });
 

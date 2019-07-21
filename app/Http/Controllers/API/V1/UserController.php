@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\RegisteRequest;
+use App\Http\Requests\User\RegisterVerifyRequest;
+use App\Http\Requests\User\SetUserNameRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\UpdateVerifyRequest;
 use ResponseJson;
 use App\User;
 use App\Device;
@@ -9,24 +15,17 @@ use App\Jobs\SendWelcomSmsJob;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
 
-    public function register(Request $request)
+    /**
+     * @param makeUserRequest $request
+     * @return mixed
+     */
+    public function register(RegisteRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'phone' => 'unique:users|max:14||regex:/(09)[0-9]{9}/',
-            'uu_id' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-
-        }
-
         $user = User::create([
             'phone' => $request->phone,
         ]);
@@ -37,19 +36,8 @@ class UserController extends Controller
 
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'phone' => 'required|regex:/(09)[0-9]{9}/',
-            'uu_id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-
-        }
-
         $user = User::where('phone', $request->phone)->first();
 
         if (!$user instanceof User) {
@@ -64,19 +52,8 @@ class UserController extends Controller
 
     }
 
-    public function verificationRegister(Request $request)
+    public function verificationRegister(RegisterVerifyRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'code' => 'required|min:4',
-            'uu_id' => 'required',
-            'phone' => 'required|regex:/(09)[0-9]{9}/',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-        }
-
         $user = User::where('phone', $request->phone)->first();
 
         if ($user instanceof User) {
@@ -104,17 +81,8 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(UpdateRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-        }
-
         $usr = Auth::user();
         $usr->name = $request->name;
 
@@ -144,20 +112,8 @@ class UserController extends Controller
 
     }
 
-    public function verificationUpdate(Request $request)
+    public function verificationUpdate(UpdateVerifyRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'phone' => 'required|unique:users|regex:/(09)[0-9]{9}/',
-            'uu_id' => 'required',
-            'code' => 'required|max:5',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-
-        }
-
         $user = Auth::user();
 
         $device = $user->devices()->where('uu_id', $request->uu_id)
@@ -206,17 +162,8 @@ class UserController extends Controller
 
     }
 
-    public function setUserName(Request $request)
+    public function setUserName(SetUserNameRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-        }
-
         $user = Auth::user();
         $user->name = $request->name;
         $user->save();

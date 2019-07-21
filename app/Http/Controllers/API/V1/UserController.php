@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use ResponseJson;
+use App\User;
 use App\Device;
 use App\Jobs\SendWelcomSmsJob;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\User;
+
 
 
 class UserController extends Controller
 {
-    private $successStatus = 1;
-    private $failedStatus = -1;
-    private $successUpdate = 2;
 
     public function register(Request $request)
     {
@@ -26,10 +25,8 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => $validator->errors()->first()
-            ]);
+         return ResponseJson::code(-1)->message($validator->errors()->first())->get();
+
         }
 
         $user = User::create([
@@ -38,10 +35,8 @@ class UserController extends Controller
 
         $user->sendSMS($request->uu_id);
 
-        return response()->json([
-            'code' => $this->successStatus,
-            'message' => 'کاربر جدید بوده و کد برایش ارسال شد!',
-        ]);
+       return ResponseJson::message('کاربر جدید بوده و کد برایش ارسال شد!')->get();
+
     }
 
     public function login(Request $request)
@@ -53,28 +48,21 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => $validator->errors()->first()
-            ]);
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
+
         }
 
         $user = User::where('phone', $request->phone)->first();
 
         if (!$user instanceof User) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => 'کاربر با این شماره وجود نداشته است!',
-            ]);
+            return ResponseJson::code(-1)->message('کاربر با این شماره وجود نداشته است!')->get();
+
         }
 
         $user->sendSMS($request->uu_id);
 
-        return response()->json([
-            'code' => $this->successStatus,
-            'message' => 'کد جدید برایش ارسال شد!',
-        ]);
+        return ResponseJson::message('کاربر جدید بوده و کد برایش ارسال شد!')->get();
 
     }
 
@@ -88,10 +76,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => $validator->errors()->first()
-            ]);
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
         }
 
         $user = User::where('phone', $request->phone)->first();
@@ -107,29 +92,19 @@ class UserController extends Controller
                 $token = $user->createToken('MyApp')->accessToken;
 
                 $check_user_code->update([
-                    'token' => $token
+                    'firebase_token' => $token
                 ]);
 
                 SendWelcomSmsJob::dispatch(trans('messages.text'), $user->phone);
 
-                return Response()->json([
-                    'code' => $this->successStatus,
-                    'message' => 'کاربر کد را به درستی وارد کرده و ورود موفق',
-                    'data' => $token,
-                ]);
+                return ResponseJson::message('کاربر کد را به درستی وارد کرده و ورود موفق')->data($token)->get();
 
             } else
+                return ResponseJson::code(-1)->message('کد صحیح نمی باشد')->get();
 
-                return Response()->json([
-                    'code' => $this->failedStatus,
-                    'message' => 'کد صحیح نمی باشد',
-                ]);
         } else {
+            return ResponseJson::code(-1)->message('این شماره صحبح نمی باشد')->get();
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => 'این شماره صحبح نمی باشد',
-            ]);
         }
     }
 
@@ -141,10 +116,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => $validator->errors()->first()
-            ]);
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
         }
         $usr = Auth::user();
         $usr->name = $request->name;
@@ -152,21 +124,16 @@ class UserController extends Controller
         if (empty($request->phone)) {
 
             $usr->save();
+            return ResponseJson::message('تغییر نام انجام شد')->get();
 
-            return Response()->json([
-                'code' => $this->successStatus,
-                'message' => 'تغییر نام انجام شد',
-            ]);
         }
 
         $user = User::where('phone', $request->phone)->first();
 
         if ($user instanceof User) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => 'این شماره قبلا ثبت شده است وخطای عدم دسترسی',
-            ]);
+            return ResponseJson::code(-1)->message('این شماره قبلا ثبت شده است وخطای عدم دسترسی')->get();
+
         }
 
         $old_user = User::where('phone', $usr->phone)->first();
@@ -175,11 +142,8 @@ class UserController extends Controller
 
         $usr->save();
 
-        return Response()->json([
+        return ResponseJson::message('کد برای شما ارسال شد')->get();
 
-            'code' => $this->successUpdate,
-            'message' => 'کد برای شما ارسال شد',
-        ]);
     }
 
     public function verificationUpdate(Request $request)
@@ -192,10 +156,8 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => $validator->errors()->first()
-            ]);
+            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
+
         }
 
         $user = Auth::user();
@@ -218,19 +180,31 @@ class UserController extends Controller
                 'phone' => $request->phone
             ]);
 
-            return Response()->json([
-                'code' => $this->successStatus,
-                'message' => 'تغییرات شماره انجام شد',
-                'data' => $token
-
-            ]);
+            return ResponseJson::message('تغییرات شماره انجام شد')->data($token)->get();
 
         } else {
 
-            return Response()->json([
-                'code' => $this->failedStatus,
-                'message' => 'کد صحیح نمی باشد',
-            ]);
+            return ResponseJson::code(-1)->message('کد صحیح نمی باشد')->get();
+
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+
+        return ResponseJson::message('کاربر با موفقیت از سیستم خارج شد!')->get();
+
+    }
+
+    public function info()
+    {
+        $user = Auth::user();
+
+        return ResponseJson::message('مشخصات کاربر')->data([
+            'name' => $user->name,
+            'phone' => $user->phone,
+        ])->get();
+
     }
 }

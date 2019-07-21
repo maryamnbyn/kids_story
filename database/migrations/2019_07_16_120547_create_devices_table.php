@@ -17,7 +17,7 @@ class CreateDevicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('uu_id')->nullable();
             $table->integer('code')->nullable();
-            $table->text('token')->nullable();
+            $table->text('firebase_token')->nullable();
             $table->timestamps();
         });
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Http\Requests\story\favoriteStoryRequest;
 use App\Http\Requests\Story\getProductRequest;
 use App\Story;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -45,6 +47,12 @@ class StoryController extends Controller
     {
         $all_story = Story::all();
         return ResponseJson::data($all_story)->get();
+    }
+
+    public function favorite(favoriteStoryRequest $request)
+    {
+        Auth::user()->favorites()->attach([$request->all()]);
+        return ResponseJson::get();
     }
 
 

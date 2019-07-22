@@ -17,9 +17,9 @@ class CreateFavoritesTable extends Migration
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('story_id');
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users') ;
             $table->foreign('story_id')->references('id')->on('stories');
-            $table->timestamps();
             $table->primary(['user_id','story_id']);
         });
     }

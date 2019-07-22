@@ -15,10 +15,6 @@ use Illuminate\Http\Request;
 //
 //
 //
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 //login and register route
 
 Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
@@ -31,10 +27,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
     //story
     Route::get('/stories/search', 'StoryController@search');
 
-
 });
-
-
 
 Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:api'], function () {
 
@@ -47,18 +40,18 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
     Route::post('/user/name', 'UserController@setInfo');
     Route::post('/user/suggestion', 'UserController@suggestion');
 
-
-
     //story Route token
 
     Route::get('/stories/{story}', 'StoryController@show');
 //    Route::get('/stories/search', 'StoryController@search');
-    Route::post('/stories', 'StoryController@store');
+
     Route::get('/stories', 'StoryController@index');
-    Route::post('/stories/update/{story}', 'StoryController@update');
-    Route::post('/stories/destroy/{story}', 'StoryController@destroy');
 
     //story Route category
     Route::get('/categories', 'CategoryController@index');
+
+    //story Route comments
+    Route::post('/comments', 'CommentController@index');
+    Route::post('comment/create', 'CommentController@store');
 
 });

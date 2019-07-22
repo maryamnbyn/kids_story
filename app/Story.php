@@ -12,6 +12,10 @@ class Story extends Model
         'category_d', 'writer','publisher','designer','talker','abstract','age','view_count','download_count','download_link'
     ];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function favorites()
     {
@@ -28,7 +32,7 @@ class Story extends Model
         return $this->belongsToMany(User::class,'story_history','story_id','user_id');
     }
 
-    
+
 
 
 //    public function scopeFavorited($query)

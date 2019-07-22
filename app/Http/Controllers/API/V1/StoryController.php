@@ -41,42 +41,11 @@ class StoryController extends Controller
 
     }
 
-    public function index(getProductRequest $request)
+    public function index()
     {
-        $user = Auth::user();
-
-        $stories = Story::where('user_id', $user->id);
-
-        switch ($request->status)
-        {
-            case    'favorited':
-                $show_story = $stories->favorited()->paginate(config('page.paginate_page'));
-                break;
-            case    'downloaded':
-                $show_story = $stories->downloaded()->paginate(config('page.paginate_page'));
-                break;
-            case    'history':
-                $show_story = $stories->history()->paginate(config('page.paginate_page'));
-                break;
-            case    'all':
-                $show_story = $stories->all()->paginate(config('page.paginate_page'));
-                break;
-        }
-
-        return response()->json([
-            "code" => $this->successStatus,
-            "message" => "نمایش همه محصولات",
-            "data" => collect($show_story->items())
-                ->map(function ($product) {
-
-                    return collect($product)->except([
-                            'created_at',
-                            'updated_at'
-                        ]
-                    );
-                }),
-            "has_more" => $show_product->hasMorePages()
-        ]);
-
+        $all_story = Story::all();
+        return ResponseJson::data($all_story)->get();
     }
+
+
 }

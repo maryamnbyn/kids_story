@@ -160,15 +160,17 @@ class UserController extends Controller
 
     }
 
-    public function setUserName(SetUserNameRequest $request)
+    public function setInfo(SetUserNameRequest $request)
     {
         $user = Auth::user();
-        $user->name = $request->name;
+        $user->name   = $request->name;
+        $user->gender = $request->gender;
+        $user->age    = $request->age;
         $user->save();
 
         SendWelcomSmsJob::dispatch(trans('messages.text', ['user' => $request->name]), $user->phone);
 
-        return ResponseJson::message('تغییر نام کاربر')->get();
+        return ResponseJson::message('تغییر اطلاعات کاربر')->get();
     }
 
     public function suggestion(UserSuggestRequest $request)

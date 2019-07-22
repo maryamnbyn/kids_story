@@ -45,6 +45,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Device::class );
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class,'favorites','user_id','story_id');
+    }
+
+    public function downloads()
+    {
+        return $this->belongsToMany(User::class,'downloads','user_id','story_id');
+    }
+
+    public function storyHistories()
+    {
+        return $this->belongsToMany(User::class,'story_history','user_id','story_id');
+    }
+
     public function sendSMS($UUID = null)
     {
         $random_number = random_int(10000, 99999);

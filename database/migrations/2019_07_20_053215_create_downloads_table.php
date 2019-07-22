@@ -14,11 +14,14 @@ class CreateDownloadsTable extends Migration
     public function up()
     {
         Schema::create('downloads', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('story_id');
-            $table->string('link');
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('story_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('story_id')->references('id')->on('stories');
             $table->timestamps();
+            $table->primary(['user_id','story_id']);
+
         });
     }
 

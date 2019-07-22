@@ -14,11 +14,13 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('story_id');
-            $table->string('story_name');
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('story_id');
+            $table->foreign('user_id')->references('id')->on('users') ;
+            $table->foreign('story_id')->references('id')->on('stories');
             $table->timestamps();
+            $table->primary(['user_id','story_id']);
         });
     }
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Story;
 
 use Illuminate\Foundation\Http\FormRequest;
 use ResponseJson;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class LoginRequest extends FormRequest
+class getProductRequest extends FormRequest
 {
 
     public function authorize()
@@ -23,7 +23,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|in:all,expired,valid,expiring'
+            'phone' => 'required|regex:/(09)[0-9]{9}/',
+            'uu_id' => 'required'
         ];
     }
 

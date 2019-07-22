@@ -8,6 +8,8 @@ use App\Http\Requests\User\RegisterVerifyRequest;
 use App\Http\Requests\User\SetUserNameRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Requests\User\UpdateVerifyRequest;
+use App\Http\Requests\User\UserSuggestRequest;
+use App\Suggestion;
 use ResponseJson;
 use App\User;
 use App\Device;
@@ -167,6 +169,16 @@ class UserController extends Controller
         SendWelcomSmsJob::dispatch(trans('messages.text', ['user' => $request->name]), $user->phone);
 
         return ResponseJson::message('تغییر نام کاربر')->get();
+    }
+
+    public function suggestion(UserSuggestRequest $request)
+    {
+        Suggestion::create([
+            'user_id' => Auth::user()->id,
+            'comment' => $request->comment
+            ]);
+
+        return ResponseJson::message('Success')->get();
     }
 
 }

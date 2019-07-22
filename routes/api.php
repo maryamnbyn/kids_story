@@ -45,6 +45,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
     Route::post('/update/verify', 'UserController@verificationUpdate');
     Route::post('/logout', 'UserController@logout');
     Route::post('/user/name', 'UserController@setUserName');
+    Route::post('/user/suggestion', 'UserController@suggestion');
 
 
 

@@ -16,7 +16,7 @@ class CreateSuggestionsTable extends Migration
         Schema::create('suggestions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->text('commnet');
+            $table->text('comment');
             $table->timestamps();
         });
     }

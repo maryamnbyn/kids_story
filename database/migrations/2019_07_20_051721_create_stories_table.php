@@ -16,10 +16,10 @@ class CreateStoriesTable extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('category_id');
+            $table->integer('publisher_id');
             $table->string('name');
             $table->string('title');
             $table->string('writer');
-            $table->string('publisher');
             $table->string('designer');
             $table->string('talker');
             $table->text('abstract');

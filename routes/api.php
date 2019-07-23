@@ -25,7 +25,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
 //    Route::get('download/{filename}', 'StoryController@Downloadlink');
 
     //story
-    Route::get('/stories/search', 'StoryController@search');
+    Route::post('/stories/search', 'StoryController@search');
 
 });
 

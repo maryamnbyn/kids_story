@@ -8,6 +8,7 @@ use App\Http\Requests\story\downloadStoryRequest;
 use App\Http\Requests\story\favoriteStoryRequest;
 use App\Http\Requests\Story\getProductRequest;
 use App\Http\Requests\story\historyStoryRequest;
+use App\Http\Requests\story\searchRequest;
 use App\Story;
 use App\Story_History;
 use App\User;
@@ -21,17 +22,8 @@ use ResponseJson;
 
 class StoryController extends Controller
 {
-    public function search(Request $request)
+    public function search(searchRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'search' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-
-            return ResponseJson::code(-1)->message($validator->errors()->first())->get();
-        }
-
         $products = Story::where('name', 'LIKE', '%' . $request->search . '%')->get();
 
         return ResponseJson::data($products)->get();
@@ -40,13 +32,7 @@ class StoryController extends Controller
 
     public function show(Story $story)
     {
-        if (Auth::user()->id != $story->user_id) {
-
-            return ResponseJson::code(-1)->message('عدم دسترسی')->get();
-
-        }
         return ResponseJson::data($story)->get();
-
     }
 
     public function index()

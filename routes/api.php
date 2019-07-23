@@ -46,7 +46,16 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
 //    Route::get('/stories/search', 'StoryController@search');
 
     Route::get('/stories', 'StoryController@index');
-    Route::post('/favorite/stories', 'StoryController@favorite');
+
+    Route::post('/favorite/stories', 'StoryController@setFavorite');
+    Route::get('/favorites/stories', 'StoryController@getFavorite');
+
+    Route::post('/download/stories', 'StoryController@setDownload');
+    Route::get('/downloads/stories', 'StoryController@getDownload');
+
+    Route::post('/history/stories', 'StoryController@setHistory');
+    Route::get('/histories/stories', 'StoryController@getHistory');
+
 
     //story Route category
     Route::get('/categories', 'CategoryController@index');

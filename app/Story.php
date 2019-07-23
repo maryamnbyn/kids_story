@@ -29,7 +29,7 @@ class Story extends Model
 
     public function storyHistories()
     {
-        return $this->belongsToMany(User::class,'story_history','story_id','user_id');
+        return $this->belongsToMany(User::class,'story_histories','story_id','user_id');
     }
 
 

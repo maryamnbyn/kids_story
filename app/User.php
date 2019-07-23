@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function storyHistories()
     {
-        return $this->belongsToMany(Story::class,'story_history','user_id','story_id');
+        return $this->belongsToMany(Story::class,'story_histories','user_id','story_id');
     }
 
     public function sendSMS($UUID = null)

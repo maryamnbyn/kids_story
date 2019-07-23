@@ -9,7 +9,7 @@ class Device extends Model
     public $table = "devices";
 
     protected $fillable = [
-        'user_id', 'token','uu_id','code'
+        'user_id', 'firebase_token','uu_id','code'
     ];
 
     public function users()

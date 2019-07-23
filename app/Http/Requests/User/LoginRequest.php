@@ -23,7 +23,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|in:all,expired,valid,expiring'
+            'phone' => 'required|max:14|regex:/(09)[0-9]{9}/',
+            'uu_id' => 'required',
         ];
     }
 

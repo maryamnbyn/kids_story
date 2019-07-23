@@ -28,6 +28,9 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'gender' => 'required',
+            'age' => 'required',
+            'uu_id' => 'required',
         ];
     }
 

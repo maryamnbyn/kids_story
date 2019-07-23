@@ -83,7 +83,6 @@ class User extends Authenticatable
         $random_number = random_int(10000, 99999);
 
         $device =  $this->devices()->where('uu_id', $UUID)->first();
-
         if (! empty($device)) {
 
             $device->update(['code' => $random_number]);

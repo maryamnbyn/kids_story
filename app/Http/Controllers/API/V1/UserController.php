@@ -83,12 +83,14 @@ class UserController extends Controller
     {
         $usr = Auth::user();
         $usr->name = $request->name;
+        $usr->gender = $request->gender;
+        $usr->age = $request->age;
 
         if (empty($request->phone)) {
 
             $usr->save();
 
-            return ResponseJson::message('تغییر نام انجام شد')->get();
+            return ResponseJson::message('ثبت اطلاعات کاربر')->get();
 
         }
 
@@ -155,22 +157,11 @@ class UserController extends Controller
 
         return ResponseJson::message('مشخصات کاربر')->data([
             'name' => $user->name,
+            'gender' => $user->gender,
+            'age' => $user->age,
             'phone' => $user->phone,
         ])->get();
 
-    }
-
-    public function setInfo(SetUserNameRequest $request)
-    {
-        $user = Auth::user();
-        $user->name   = $request->name;
-        $user->gender = $request->gender;
-        $user->age    = $request->age;
-        $user->save();
-
-        SendWelcomSmsJob::dispatch(trans('messages.text', ['user' => $request->name]), $user->phone);
-
-        return ResponseJson::message('تغییر اطلاعات کاربر')->get();
     }
 
     public function suggestion(UserSuggestRequest $request)

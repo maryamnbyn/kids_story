@@ -37,7 +37,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
     Route::post('/user/info', 'UserController@info');
     Route::post('/update/verify', 'UserController@verificationUpdate');
     Route::post('/logout', 'UserController@logout');
-    Route::post('/user/name', 'UserController@setInfo');
+    Route::post('/user/name', 'UserController@update');
     Route::post('/user/suggestion', 'UserController@suggestion');
 
     //story Route token

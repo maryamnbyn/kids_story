@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Category;
+use App\Http\Requests\category\getCategoryStroryRequest;
 use App\Story;
 use App\Http\Controllers\Controller;
 use ResponseJson;
@@ -15,10 +16,10 @@ class CategoryController extends Controller
         return ResponseJson::data($categories)->get();
     }
 
-    public function categoryStory(Category $category)
+    public function categoryStory(getCategoryStroryRequest $request)
     {
 
-        $stories = Story::where('category_id', $category->id)->get();
+        $stories = Story::where('category_id', $request->category_id)->get();
 
         return ResponseJson::data($stories)->get();
 

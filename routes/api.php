@@ -22,10 +22,6 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1'], function () {
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::post('/register/verify', 'UserController@verificationRegister');
-//    Route::get('download/{filename}', 'StoryController@Downloadlink');
-
-    //story
-    Route::post('/stories/search', 'StoryController@search');
 
 });
 
@@ -46,6 +42,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
 //    Route::get('/stories/search', 'StoryController@search');
 
     Route::get('/stories', 'StoryController@index');
+    Route::post('/stories/search', 'StoryController@search');
 
     Route::post('/favorite/stories', 'StoryController@setFavorite');
     Route::get('/favorites/stories', 'StoryController@getFavorite');

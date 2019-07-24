@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Story::class,'downloads','user_id','story_id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function storyHistories()
     {
         return $this->belongsToMany(Story::class,'story_histories','user_id','story_id');

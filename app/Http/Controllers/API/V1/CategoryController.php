@@ -18,11 +18,9 @@ class CategoryController extends Controller
 
     public function categoryStory(getCategoryStroryRequest $request)
     {
-
         $stories = Story::where('category_id', $request->category_id)->get();
 
         return ResponseJson::data($stories)->get();
-
 
     }
 }

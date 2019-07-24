@@ -61,7 +61,7 @@ Route::group(['namespace' => 'API\V1', 'prefix' => 'v1' ,'middleware' => 'auth:a
     Route::get('/category', 'CategoryController@categoryStory');
 
     //story Route comments
-    Route::post('/comments', 'CommentController@index');
+    Route::get('/stories/{story}/comments', 'CommentController@index');
     Route::post('comment/create', 'CommentController@store');
 
 });

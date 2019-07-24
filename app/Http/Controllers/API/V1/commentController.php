@@ -4,9 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Comment;
 use App\Http\Requests\comment\createCommentRequest;
-use App\Http\Requests\comment\getCommentRequest;
 use App\Story;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use ResponseJson;

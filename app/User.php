@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Jobs\sendSMSVerificationJob;
-use App\Jobs\SendWelcomSmsJob;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;

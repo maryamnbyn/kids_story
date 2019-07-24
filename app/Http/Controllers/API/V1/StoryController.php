@@ -6,7 +6,6 @@ use App\Download;
 use App\Favorite;
 use App\Http\Requests\story\downloadStoryRequest;
 use App\Http\Requests\story\favoriteStoryRequest;
-use App\Http\Requests\Story\getProductRequest;
 use App\Http\Requests\story\historyStoryRequest;
 use App\Http\Requests\story\searchRequest;
 use App\Story;

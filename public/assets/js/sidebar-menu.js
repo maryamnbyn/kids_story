@@ -89,11 +89,11 @@ $(".sidebar-menu>li a").filter(function() {
   // console.log(window.location.pathname);
   // console.log($(this).attr("href"));
 
-  var link = $(this).attr("href");
-  if(link){
-    if (current.indexOf(link) != -1) {
-      $(this).parents('li').addClass('active');
-      $(this).addClass('active');
-    }
+var link = $(this).attr("href");
+if(link){
+  if (current == link) {
+    $(this).parents('li').addClass('active');
+    $(this).addClass('active');
   }
+}
 });

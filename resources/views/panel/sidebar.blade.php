@@ -33,9 +33,13 @@
             </li>
             <li><a class="sidebar-header" href="/admin/profile" class="{{Route::currentRouteName() == 'admin.profile' ? 'active' : ''}}"><i data-feather="home"></i><span>مشاهده پروفایل</span></a></li>
 
-            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>خروج از حساب کاربری</span></a>
+            <li><a class="sidebar-header"  href="/login"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                   ><i data-feather="home"></i><span>خروج از حساب کاربری</span></a>
 
-
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
 
         </ul>
     </div>

@@ -28,13 +28,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="page-header-left">
-                                <h3>جداول پایه بوت استرپ</h3>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                                    <li class="breadcrumb-item">جداول</li>
-                                    <li class="breadcrumb-item">جداول بوت استرپ</li>
-                                    <li class="breadcrumb-item active">جداول پایه</li>
-                                </ol>
+                                <h3>لیست داستان ها</h3>
+
                             </div>
                         </div>
 
@@ -47,7 +42,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>جدول پایه</h5><span>Use a class<code>table</code> to any table.</span>
+                                <h5>داستان ها</h5>
                             </div>
                             <div class="table-responsive">
                                 <table class="table">

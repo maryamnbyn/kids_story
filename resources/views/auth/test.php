@@ -24,20 +24,11 @@
                                         <h4>ورود</h4>
                                         <h6>نام کاربری و رمز عبور خود را وارد کنید </h6>
                                     </div>
-                                    @if(count($errors))
-                                        <div class="alert alert-danger">
-                                            <ui>
-                                                @foreach($errors->all() as $error)
-                                                    <li> {{$error}}</li>
-                                                @endforeach
-                                            </ui>
-                                        </div>
-                                    @endif
                                     <form class="theme-form" method="post" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
                                             <label class="col-form-label pt-0">نام شما</label>
-                                            <input class="form-control" id="email" type="email"  name="email" required="">
+                                            <input class="form-control" id="email" type="email" required="">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -46,7 +37,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-form-label">رمز عبور</label>
-                                            <input class="form-control" id="password" name="password" type="password" required="">
+                                            <input class="form-control" id="password" type="password" required="">
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

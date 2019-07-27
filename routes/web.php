@@ -23,5 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['as'=>'admin.','namespace' => 'Admin' ,'prefix' => 'admin' ] ,function(){
 Route::get('/dashboard' ,'AdminController@dashboard');
+Route::get('/profile' ,'AdminController@profile');
     Route::resource('/stories', 'StoryController');
 });

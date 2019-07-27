@@ -11,4 +11,8 @@ class StoryController extends Controller
     {
         return view('panel.story.create');
     }
+    public function index()
+    {
+        return view('panel.story.index');
+    }
 }

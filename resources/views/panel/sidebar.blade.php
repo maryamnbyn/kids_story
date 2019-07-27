@@ -16,12 +16,12 @@
             </li>
             <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>داستان</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="index.html"><i class="fa fa-circle"></i><span>لیست داستان ها</span></a></li>
+                    <li><a href="/admin/stories"><i class="fa fa-circle"></i><span>لیست داستان ها</span></a></li>
                     <li><a href="/admin/stories/create"><i class="fa fa-circle"></i><span>افزودن</span></a></li>
 
                 </ul>
             </li>
-            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>مشاهده پروفایل</span></a>
+            <li><a class="sidebar-header" href="/admin/profile"><i data-feather="home"></i><span>مشاهده پروفایل</span></a>
             <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>خروج از حساب کاربری</span></a>
 
         </ul>

@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //admin pannel
 
-Route::group(['as'=>'admin.','namespace' => 'Admin' ,'prefix' => 'admin' ] ,function(){
+Route::group(['as'=>'admin.','namespace' => 'Admin' ,'prefix' => 'admin','middleware'=>'admin'] ,function(){
 Route::get('/dashboard' ,'AdminController@dashboard');
 Route::get('/profile' ,'AdminController@profile')->name('profile');
     Route::resource('/stories', 'StoryController');

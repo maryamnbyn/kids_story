@@ -18,15 +18,16 @@ class CreateStoriesTable extends Migration
             $table->integer('category_id');
             $table->string('name');
             $table->string('title');
-            $table->string('writer');
-            $table->string('publisher');
-            $table->string('designer');
-            $table->string('talker');
-            $table->text('abstract');
-            $table->integer('age');
-            $table->integer('view_count');
-            $table->integer('download_count');
-            $table->string('download_link');
+            $table->string('writer')->nullable();
+            $table->string('publisher')->nullable();
+            $table->string('designer')->nullable();
+            $table->string('talker')->nullable();
+            $table->text('abstract')->nullable();
+            $table->string('age');
+            $table->integer('view_count')->nullable();
+            $table->integer('download_count')->nullable();
+            $table->string('pic_name')->nullable();
+            $table->string('voice_name')->nullable();
             $table->timestamps();
         });
     }

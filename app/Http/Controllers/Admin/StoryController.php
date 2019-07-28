@@ -18,7 +18,8 @@ class StoryController extends Controller
 
     public function index()
     {
-        return view('panel.story.index');
+        $stories = Story::paginate(config('page.paginate_page'));
+        return view('panel.story.index' , compact('stories'));
     }
 
     public function store(storeStoryRequest $request)
@@ -36,5 +37,14 @@ class StoryController extends Controller
             'download_link' => 'dkmsdk'
         ]);
 
+        return redirect()->back();
+
+    }
+    public function destroy(Story $story)
+    {
+        if ($story != null) {
+            $story->delete();
+            return redirect()->back();
+        }
     }
 }

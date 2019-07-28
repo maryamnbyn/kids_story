@@ -24,8 +24,8 @@ class CreateStoriesTable extends Migration
             $table->string('talker')->nullable();
             $table->text('abstract')->nullable();
             $table->string('age');
-            $table->integer('view_count')->nullable();
-            $table->integer('download_count')->nullable();
+            $table->integer('view_count')->default(0);
+            $table->integer('download_count')->default(0);
             $table->string('pic_name')->nullable();
             $table->string('voice_name')->nullable();
             $table->timestamps();

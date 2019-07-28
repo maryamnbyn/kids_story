@@ -67,7 +67,8 @@
                                                 <div class="col-6"><!--left side -->
                                                     <div class="form-group draggable">
                                                         <label for="input-text-1">نام داستان</label>
-                                                        <input class="form-control btn-square" id="input-text-1" name="name"
+                                                        <input class="form-control btn-square" id="input-text-1"
+                                                               name="name"
                                                                type="text" placeholder="متن">
                                                     </div>
                                                     <br>
@@ -111,76 +112,79 @@
                                                     </div>
                                                 </div>
 
-                                            <div class="col-lg-6 col-xl-6 lg-mt">
-                                            <!-- Form builder column wise start-->
-                                            <div class="form-body row form-builder-2">
-                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-                                            <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
-                                            style="">
-                                            <label for="formcontrol-select1">انتخاب رنج سنی</label>
-                                            <select class="form-control btn-square"
-                                            id="formcontrol-select1" name="age">
-                                            <option>1-3</option>
-                                            <option>3-5</option>
-                                            <option>5-7</option>
-                                            <option>7-9</option>
+                                                <div class="col-lg-6 col-xl-6 lg-mt">
+                                                    <!-- Form builder column wise start-->
+                                                    <div class="form-body row form-builder-2">
+                                                        <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
+                                                            <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
+                                                                 style="">
+                                                                <label for="formcontrol-select1">انتخاب رنج سنی</label>
+                                                                <select class="form-control btn-square"
+                                                                        id="formcontrol-select1" name="age">
+                                                                    <option>1-3</option>
+                                                                    <option>3-5</option>
+                                                                    <option>5-7</option>
+                                                                    <option>7-9</option>
 
-                                            </select>
-                                            <br>
-                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-                                            <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
-                                            style="">
-                                            <label for="formcontrol-select1">انتخاب دسته
-                                            بندی</label>
-                                            <select class="form-control btn-square"
-                                            id="formcontrol-select1" name="category" multiple>
-                                                @foreach($categories as $category)
+                                                                </select>
+                                                                <br>
+                                                                <label for="formcontrol-select1">انتخاب رنج سنی</label>
+                                                                <select class="form-control btn-square"
+                                                                        id="formcontrol-select1" name="category" >
+                                                                    @foreach($categories as $category)
+                                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                    @endforeach
 
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                                @endforeach
-                                            </select>
+                                                                </select>
+                                                                <br>
+                                                                <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
 
-                                            </div>
-                                            <br>
-                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-                                            <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
-                                            style="">
-                                            <div class="form-group draggable">
-                                            <label for="input-file-1">دریافت صدای داستان</label>
-                                            <input id="input-file-1" type="file"
-                                            data-original-title="" title="">
+                                                                    <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
+                                                                        <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
+                                                                             style="">
+                                                                            <div class="form-group draggable">
+                                                                                <label for="input-file-1">دریافت صدای
+                                                                                    داستان</label>
+                                                                                <input id="input-file-1" type="file"
+                                                                                       data-original-title="" title="">
 
-                                            </div>
+                                                                            </div>
 
-                                            <br>
-                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-                                            <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
-                                            style="">
-                                            <div class="form-group draggable">
-                                            <label for="input-file-1">دریافت تصویر داستان</label>
-                                            <input id="input-file-1" type="file"
-                                            data-original-title=""
-                                            title="">
+                                                                            <br>
+                                                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
+                                                                                <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
+                                                                                     style="">
+                                                                                    <div class="form-group draggable">
+                                                                                        <label for="input-file-1">دریافت
+                                                                                            تصویر داستان</label>
+                                                                                        <input id="input-file-1"
+                                                                                               type="file"
+                                                                                               data-original-title=""
+                                                                                               title="">
 
-                                            </div>
-                                                <br>
-                                                <button class="btn btn-primary active" type="submit" data-original-title="btn btn-dark active" title="">ثبت</button>
+                                                                                    </div>
+                                                                                    <br>
+                                                                                    <button class="btn btn-primary active"
+                                                                                            type="submit"
+                                                                                            data-original-title="btn btn-dark active"
+                                                                                            title="">ثبت
+                                                                                    </button>
 
-                                            </div>
-                                            <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
-                                            style="display: none;"></div>
-                                            <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
-                                            style="display: none;"></div>
-                                            </div>
-                                            </div>
+                                                                                </div>
+                                                                                <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
+                                                                                     style="display: none;"></div>
+                                                                                <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
+                                                                                     style="display: none;"></div>
+                                                                            </div>
+                                                                        </div>
 
-                                            </div>
-                                            </div>
-                                            <!-- Form builder column wise ends-->
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Form builder column wise ends-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <!--right side -->
                                             </div>
                                             <!-- form for teacher/student-->

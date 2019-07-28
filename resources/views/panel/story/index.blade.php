@@ -1,27 +1,15 @@
 @include('panel.head')
 
 <body main-theme-layout="rtl">
-<!-- Loader starts-->
-
-<!-- Loader ends-->
-<!-- page-wrapper Start-->
 
 <div class="page-wrapper">
-    <!-- Page Header Start-->
-@include('panel.header')
-<!-- Page Header Ends                              -->
-    <!-- Page Body Start-->
+
+    @include('panel.header')
+
     <div class="page-body-wrapper">
-        <!-- Page Sidebar Start-->
-    @include('panel.sidebar')
-    <!-- Page Sidebar Ends-->
-        <!-- Right sidebar Start-->
 
-        <!-- Right sidebar Ends-->
+        @include('panel.sidebar')
 
-        <!-- footer start-->
-
-        <!-- Bookmark Ends-->
         <div class="page-body">
             <div class="container-fluid">
                 <div class="page-header">
@@ -67,12 +55,12 @@
                                         @foreach($stories as $story)
                                             <th scope="row">{{$story->id}}</th>
                                             <td>{{$story->name}}</td>
-                                            <td>{{$story->title}}</td>
+                                            <td>{{$story->section_body  }}</td>
                                             <td>{{$story->writer}}</td>
                                             <td>{{$story->publisher}}</td>
                                             <td>{{$story->designer}}</td>
                                             <td>{{$story->talker}}</td>
-                                            <td>{{$story->abstract}}</td>
+                                            <td>{{$story->section_body }}</td>
                                             <td>{{$story->age}}</td>
                                             <td>{{$story->view_count}}</td>
                                             <td>{{$story->download_count}}</td>
@@ -85,12 +73,12 @@
                                                             onClick="deleteme({{$story->id}})">حذف
                                                     </button>
                                                     <a class="dropdown-item"
-                                                       href="{{ route('admin.stories.edit',['stories' =>$story->id ])  }}">ویرایش</a>
+                                                       href="{{ route('admin.stories.edit',['story' =>$story->id ])  }}">ویرایش</a>
                                                 </form>
                                             </td>
                                             <script language="javascript">
                                                 function deleteme(id) {
-                                                    if (confirm("Do you want Delete!")) {
+                                                    if (confirm("آیا مطمئن هستید؟!")) {
                                                         window.location.href = 'products.destroy?del=' + id + '';
                                                         return true;
                                                     }
@@ -104,9 +92,7 @@
                                     {!! $stories->render() !!}
                                 </div>
                             </div>
-
                         </div>
-
 
                     </div>
 
@@ -115,7 +101,6 @@
             </div>
 
             <!-- Bookmark Ends-->
-
 
         </div>
         @include('panel.footer')

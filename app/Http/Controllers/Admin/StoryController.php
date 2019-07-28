@@ -40,11 +40,35 @@ class StoryController extends Controller
         return redirect()->back();
 
     }
+    
     public function destroy(Story $story)
     {
         if ($story != null) {
             $story->delete();
             return redirect()->back();
         }
+    }
+
+    public function edit(Story $story)
+    {
+        $categories = Category::all();
+        return view('panel.story.edit', compact('story','categories'));
+    }
+
+    public function update(Request $request,Story $story)
+    {
+        $story->update([
+            'category_id' => $request->category,
+            'name' => $request->name,
+            'title' => $request->title,
+            'writer' => $request->writer,
+            'age' => $request->age,
+            'publisher' => $request->publisher,
+            'designer' => $request->designer,
+            'talker' => $request->talker,
+            'abstract' => $request->abstract,
+            'download_link' => 'dkmsdk'
+        ]);
+        return redirect()->route('admin.stories.index');
     }
 }

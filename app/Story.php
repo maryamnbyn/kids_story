@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Story extends Model
 {
@@ -11,6 +12,7 @@ class Story extends Model
     protected $fillable = [
         'category_id','name','title', 'writer','publisher','designer','talker','abstract','age','view_count','download_count','pic_name','voice_name'
     ];
+    protected $appends=['section_body'];
 
     public function comments()
     {
@@ -32,7 +34,10 @@ class Story extends Model
         return $this->belongsToMany(User::class,'story_histories','story_id','user_id');
     }
 
-
+    public function getSectionBodyAttribute()
+    {
+        return Str::words($this->abstract,3);
+    }
 
 
 //    public function scopeFavorited($query)

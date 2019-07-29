@@ -11,6 +11,8 @@
 |
 */
 
+use App\Story;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,3 +28,5 @@ Route::get('/dashboard' ,'AdminController@dashboard');
 Route::get('/profile' ,'AdminController@profile')->name('profile');
     Route::resource('/stories', 'StoryController');
 });
+
+

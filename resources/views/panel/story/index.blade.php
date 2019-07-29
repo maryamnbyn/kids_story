@@ -63,7 +63,7 @@
                                             <td>{{$story->section_body }}</td>
                                             <td>{{$story->age}}</td>
                                             <td>{{$story->view_count}}</td>
-                                            <td>{{$story->download_count}}</td>
+                                            <td>{{$story->downloadCount()}}</td>
                                             <td>
                                                 <form action="{{ route('admin.stories.destroy',['story' =>$story->id ]) }}"
                                                       method="POST">

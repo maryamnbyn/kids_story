@@ -11,4 +11,5 @@ class Download extends Model
     protected $fillable = [
         'story_id', 'user_id'
     ];
+
 }

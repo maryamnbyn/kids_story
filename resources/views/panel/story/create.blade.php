@@ -66,45 +66,45 @@
                                             <div class="row">
                                                 <div class="col-6"><!--left side -->
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">نام داستان</label>
+                                                        <label for="input-text-1">نام </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                name="name"
                                                                type="text" placeholder="متن">
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">موضوع داستان</label>
+                                                        <label for="input-text-1">موضوع </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                type="text" placeholder="متن" name="title">
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">نام نویسنده داستان</label>
+                                                        <label for="input-text-1">نام نویسنده </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                type="text" placeholder="متن" name="writer">
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">نام ناشر داستان</label>
+                                                        <label for="input-text-1">نام ناشر </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                type="text" placeholder="متن" name="publisher">
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">نام طراح داستان</label>
+                                                        <label for="input-text-1">نام طراح </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                type="text" placeholder="متن" name="designer">
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">نام گوینده داستان</label>
+                                                        <label for="input-text-1">نام گوینده </label>
                                                         <input class="form-control btn-square" id="input-text-1"
                                                                type="text" placeholder="متن" name="talker">
 
                                                     </div>
                                                     <br>
                                                     <div class="form-group draggable">
-                                                        <label for="input-text-1">چکیده داستان</label>
+                                                        <label for="input-text-1">چکیده </label>
                                                         <textarea class="form-control btn-square"
                                                                   id="input-text-1" type="text"
                                                                   placeholder="متن" name="abstract"></textarea>
@@ -128,7 +128,7 @@
 
                                                                 </select>
                                                                 <br>
-                                                                <label for="formcontrol-select1">انتخاب رنج سنی</label>
+                                                                <label for="formcontrol-select1">انتخاب دسته بندی</label>
                                                                 <select class="form-control btn-square"
                                                                         id="formcontrol-select1" name="category" >
                                                                     @foreach($categories as $category)

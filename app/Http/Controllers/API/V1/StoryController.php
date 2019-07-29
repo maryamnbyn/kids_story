@@ -70,7 +70,7 @@ class StoryController extends Controller
 
     public function setDownload(downloadStoryRequest $request)
     {
-        $story_id = Story::where('id', $request->story_id)->first();
+        $story_id = Story::find($request->story_id);
 
         if ($story_id instanceof Story) {
 

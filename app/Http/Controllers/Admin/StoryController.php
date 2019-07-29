@@ -24,7 +24,7 @@ class StoryController extends Controller
 
     public function store(storeStoryRequest $request)
     {
-       $story =  Story::create([
+        $story = Story::create([
             'category_id' => $request->category,
             'name' => $request->name,
             'title' => $request->title,
@@ -36,6 +36,7 @@ class StoryController extends Controller
             'abstract' => $request->abstract,
             'download_link' => 'dkmsdk'
         ]);
+
         $pic = Request()->file('storyPic');
         $story->storeFile($pic);
 

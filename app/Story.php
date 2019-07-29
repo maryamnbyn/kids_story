@@ -61,4 +61,9 @@ class Story extends Model
             ]);
         }
     }
+
+    public function downloadCount()
+    {
+        return $this->downloads()->count();
+    }
 }

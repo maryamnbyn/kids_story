@@ -60,7 +60,7 @@
                                                 </ui>
                                             </div>
                                         @endif
-                                        <form method="post" action="{{route('admin.stories.store')}}">
+                                        <form method="post" action="{{route('admin.stories.store')}}" enctype="multipart/form-data">
                                             {!! csrf_field() !!}
 
                                             <div class="row">
@@ -146,7 +146,7 @@
                                                                                 <label for="input-file-1">دریافت صدای
                                                                                     داستان</label>
                                                                                 <input id="input-file-1" type="file"
-                                                                                       data-original-title="" title="">
+                                                                                       data-original-title="" title="" name="storyVoice">
 
                                                                             </div>
 
@@ -160,7 +160,7 @@
                                                                                         <input id="input-file-1"
                                                                                                type="file"
                                                                                                data-original-title=""
-                                                                                               title="">
+                                                                                               title="" name="storyPic">
 
                                                                                     </div>
                                                                                     <br>

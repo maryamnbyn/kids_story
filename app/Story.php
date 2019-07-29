@@ -38,25 +38,27 @@ class Story extends Model
     {
         return Str::words($this->abstract,3);
     }
+    public function storeFile($pic=null)
+    {
+        if (!empty($pic))
+        {
+            $picName = $pic->store('public/upload','asset');
+            $storyPic = pathinfo($picName, PATHINFO_BASENAME);
+            $this->update([
+                'pic_name' => $storyPic
+            ]);
+        }
+    }
 
-
-//    public function scopeFavorited($query)
-//    {
-//        return $query->where('end_date_of_warranty', '<', Carbon::now());
-//    }
-//
-//    public function scopeAll($query)
-//    {
-//        return $query->first();
-//    }
-//
-//    public function scopeDownloaded($query)
-//    {
-//        return $query->where('end_date_of_warranty', '>', Carbon::now());
-//    }
-//
-//    public function scopeHistory($query)
-//    {
-//        return $query->whereBetween('end_date_of_warranty', [Carbon::now(), Carbon::now()->addMonths(2)]);
-//    }
+    public function storeVoice($voice=null)
+    {
+        if (!empty($voice))
+        {
+            $voiceName = $voice->store('public/voice','asset');
+            $storyVoice = pathinfo($voiceName, PATHINFO_BASENAME);
+            $this->update([
+                'voice_name' => $storyVoice
+            ]);
+        }
+    }
 }

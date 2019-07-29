@@ -19,12 +19,12 @@ class StoryController extends Controller
     public function index()
     {
         $stories = Story::paginate(config('page.paginate_page'));
-        return view('panel.story.index' , compact('stories'));
+        return view('panel.story.index', compact('stories'));
     }
 
     public function store(storeStoryRequest $request)
     {
-        Story::create([
+       $story =  Story::create([
             'category_id' => $request->category,
             'name' => $request->name,
             'title' => $request->title,
@@ -36,11 +36,16 @@ class StoryController extends Controller
             'abstract' => $request->abstract,
             'download_link' => 'dkmsdk'
         ]);
+        $pic = Request()->file('storyPic');
+        $story->storeFile($pic);
+
+        $voice = Request()->file('storyVoice');
+        $story->storeVoice($voice);
 
         return redirect()->back();
 
     }
-    
+
     public function destroy(Story $story)
     {
         if ($story != null) {
@@ -52,10 +57,10 @@ class StoryController extends Controller
     public function edit(Story $story)
     {
         $categories = Category::all();
-        return view('panel.story.edit', compact('story','categories'));
+        return view('panel.story.edit', compact('story', 'categories'));
     }
 
-    public function update(Request $request,Story $story)
+    public function update(Request $request, Story $story)
     {
         $story->update([
             'category_id' => $request->category,

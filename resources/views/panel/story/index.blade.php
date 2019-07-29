@@ -45,7 +45,6 @@
                                         <th scope="col">گوینده</th>
                                         <th scope="col">چکیده</th>
                                         <th scope="col">رده سنی</th>
-                                        <th scope="col">تعداد بازدید</th>
                                         <th scope="col">تعداد دانلود</th>
                                         <th scope="col">عملیات</th>
                                     </tr>
@@ -62,7 +61,6 @@
                                             <td>{{$story->talker}}</td>
                                             <td>{{$story->section_body }}</td>
                                             <td>{{$story->age}}</td>
-                                            <td>{{$story->view_count}}</td>
                                             <td>{{$story->downloadCount()}}</td>
                                             <td>
                                                 <form action="{{ route('admin.stories.destroy',['story' =>$story->id ]) }}"

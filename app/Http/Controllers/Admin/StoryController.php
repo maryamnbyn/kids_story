@@ -77,4 +77,10 @@ class StoryController extends Controller
         ]);
         return redirect()->route('admin.stories.index');
     }
+
+    public function downloadLink($filename)
+    {
+        return response()->file(public_path('/storage/public/upload/'.$filename));
+
+    }
 }

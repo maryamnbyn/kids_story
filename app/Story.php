@@ -12,7 +12,7 @@ class Story extends Model
     protected $fillable = [
         'category_id','name','title', 'writer','publisher','designer','talker','abstract','age','view_count','download_count','pic_name','voice_name'
     ];
-    protected $appends=['section_body','image_url'];
+    protected $appends=['section_body'];
 
 
     public function comments()
@@ -130,16 +130,6 @@ class Story extends Model
         return $this->downloads()->count();
     }
 
-    public function getImageUrlAttribute()
-    {
-        if(!empty($this->pic_name)){
-            $url = URL('') . "/story/pic/".$this->pic_name;
-            return $url;
-        }else
-        {
-            return null;
-        }
 
-    }
 
 }

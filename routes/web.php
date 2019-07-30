@@ -31,3 +31,8 @@ Route::get('/profile' ,'AdminController@profile')->name('profile');
 
 
 Route::get('/story/pic/{filename}' ,'Admin\StoryController@downloadLink');
+
+
+Route::get('/test' ,function (){
+    dd(\App\Image::find(2)->image_url);
+});

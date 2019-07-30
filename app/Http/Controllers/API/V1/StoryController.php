@@ -31,7 +31,15 @@ class StoryController extends Controller
 
     public function show(Story $story)
     {
-        return ResponseJson::data($story)->get();
+        $images = $story->images()->get('name');
+        foreach ($images as $image) {
+            $urlImages[] = URL('') . "/story/pic/" . $image->name;
+        }
+        $data = $story->toArray();
+        $data['images'] = $urlImages;
+
+
+        return ResponseJson::data($data)->get();
     }
 
     public function index()

@@ -60,7 +60,7 @@
                                                 </ui>
                                             </div>
                                         @endif
-                                        <form method="post" action="{{route('admin.stories.update',['story'=>$story->id])}}">
+                                        <form method="post" action="{{route('admin.stories.update',['story'=>$story->id])}}" enctype="multipart/form-data">
                                             {!! csrf_field() !!}
 
                                             @method('PUT')
@@ -129,7 +129,7 @@
 
                                                                 </select>
                                                                 <br>
-                                                                <label for="formcontrol-select1">انتخاب رنج سنی</label>
+                                                                <label for="formcontrol-select1">انتخاب دسته بندی</label>
                                                                 <select class="form-control btn-square"
                                                                         id="formcontrol-select1" name="category"  >
                                                                     @foreach($categories as $category)
@@ -161,14 +161,14 @@
                                                                                         <input id="input-file-1"
                                                                                                type="file"
                                                                                                data-original-title=""
-                                                                                               title="">
+                                                                                               title="" name="storyPic">
 
                                                                                     </div>
                                                                                     <br>
                                                                                     <button class="btn btn-primary active"
                                                                                             type="submit"
                                                                                             data-original-title="btn btn-dark active"
-                                                                                            title="">ثبت
+                                                                                            title="" name="storyVoice">ثبت
                                                                                     </button>
 
                                                                                 </div>

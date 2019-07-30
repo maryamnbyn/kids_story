@@ -29,6 +29,8 @@
 <script src="{{asset('assets/js/tooltip-init.js')}}"></script>
 <script src="{{asset('assets/js/typeahead-search/handlebars.js')}}"></script>
 <script src="{{asset('assets/js/typeahead-search/typeahead-custom.js')}}"></script>
+{{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>--}}
+
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{asset('assets/js/script.js')}}"></script>

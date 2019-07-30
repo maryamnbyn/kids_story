@@ -37,7 +37,7 @@ class StoryController extends Controller
             'download_link' => 'dkmsdk'
         ]);
 
-        $pic = Request()->file('storyPic');
+        $pic = Request()->file('filename');
         $story->storeFile($pic);
 
         $voice = Request()->file('storyVoice');
@@ -75,6 +75,13 @@ class StoryController extends Controller
             'abstract' => $request->abstract,
             'download_link' => 'dkmsdk'
         ]);
+
+        $pic = Request()->file('storyPic');
+        $story->updateFile($pic);
+
+        $voice = Request()->file('storyVoice');
+        $story->updateStore($voice);
+
         return redirect()->route('admin.stories.index');
     }
 

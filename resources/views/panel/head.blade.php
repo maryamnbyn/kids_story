@@ -2,6 +2,9 @@
 <html lang="en" dir="rtl">
 
 <head>
+
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,4 +40,6 @@
     <link id="color" rel="stylesheet" href="{{asset('assets/css/light-1.css')}}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+
 </head>

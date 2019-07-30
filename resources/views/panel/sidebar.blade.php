@@ -15,7 +15,7 @@
             <li><a class="sidebar-header" href="/admin/dashboard"><i data-feather="home"></i><span>داشبورد</span></a>
 
             </li>
-            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>داستان</span><i class="fa fa-angle-right pull-right"></i></a>
+            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>داستان</span><i class="fa fa-angle-right pull-left"></i></a>
                 <ul class="sidebar-submenu"
                 style="
                 {{Route::currentRouteName() == 'admin.stories.index' ? 'display:block;' : ''}}
@@ -27,7 +27,7 @@
 
                 </ul>
             </li>
-            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>دسته بندی</span><i class="fa fa-angle-right pull-right"></i></a>
+            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>دسته بندی</span><i class="fa fa-angle-right pull-left"></i></a>
                 <ul class="sidebar-submenu"
                     style=" ">
 

@@ -151,37 +151,63 @@
                                                                             </div>
 
                                                                             <br>
-                                                                            <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-                                                                                <div class="form-group draggable ui-draggable ui-draggable-handle dropped"
-                                                                                     style="">
-                                                                                    <div class="form-group draggable">
-                                                                                        <label for="input-file-1">دریافت
-                                                                                            تصویر داستان</label>
-                                                                                        <input id="input-file-1"
-                                                                                               type="file"
-                                                                                               data-original-title=""
-                                                                                               title="" name="storyPic">
+                                                                            {{--<div class="col-md-12 droppable sortable ui-droppable ui-sortable">--}}
+                                                                                {{--<div class="form-group draggable ui-draggable ui-draggable-handle dropped"--}}
+                                                                                     {{--style="">--}}
+                                                                                    {{--<div class="form-group draggable">--}}
+                                                                                        {{--<label for="input-file-1">دریافت--}}
+                                                                                            {{--تصویر داستان</label>--}}
+                                                                                        {{--<input id="input-file-1"--}}
+                                                                                               {{--type="file"--}}
+                                                                                               {{--data-original-title=""--}}
+                                                                                               {{--title="" name="storyPic">--}}
 
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    <button class="btn btn-primary active"
-                                                                                            type="submit"
-                                                                                            data-original-title="btn btn-dark active"
-                                                                                            title="">ثبت
-                                                                                    </button>
+                                                                                    {{--</div>--}}
+                                                                                    {{--<br>--}}
+                                                                                    {{--<button class="btn btn-primary active"--}}
+                                                                                            {{--type="submit"--}}
+                                                                                            {{--data-original-title="btn btn-dark active"--}}
+                                                                                            {{--title="">ثبت--}}
+                                                                                    {{--</button>--}}
 
+                                                                                {{--</div>--}}
+                                                                                {{--<div class="col-md-6 droppable sortable ui-droppable ui-sortable"--}}
+                                                                                     {{--style="display: none;"></div>--}}
+                                                                                {{--<div class="col-md-6 droppable sortable ui-droppable ui-sortable"--}}
+                                                                                     {{--style="display: none;"></div>--}}
+                                                                            {{--</div>--}}
+                                                                            <label for="input-file-1">دریافت تصویر
+                                                                                داستان</label>
+                                                                            <div class="input-group control-group increment" >
+
+                                                                                <input type="file" name="filename[]" class="form-control">
+                                                                                <div class="input-group-btn">
+                                                                                    <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
                                                                                 </div>
-                                                                                <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
-                                                                                     style="display: none;"></div>
-                                                                                <div class="col-md-6 droppable sortable ui-droppable ui-sortable"
-                                                                                     style="display: none;"></div>
                                                                             </div>
+                                                                            <div class="clone hide">
+                                                                                <div class="control-group input-group" style="margin-top:10px">
+                                                                                    <input type="file" name="filename[]" class="form-control">
+                                                                                    <div class="input-group-btn">
+                                                                                        <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
                                                                         </div>
 
                                                                     </div>
+
                                                                 </div>
+
                                                                 <!-- Form builder column wise ends-->
                                                             </div>
+                                                            <br>
+                                                            <button class="btn btn-primary active"
+                                                                    type="submit"
+                                                                    data-original-title="btn btn-dark active"
+                                                                    title="">ثبت
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,6 +225,23 @@
                         <!-- latest jquery-->
                     @include('panel.footer_scripts')
                     <!-- Plugin used-->
+                        <script type="text/javascript">
+
+
+                            $(document).ready(function() {
+
+                                $(".btn-success").click(function(){
+                                    var html = $(".clone").html();
+                                    $(".increment").after(html);
+                                });
+
+                                $("body").on("click",".btn-danger",function(){
+                                    $(this).parents(".control-group").remove();
+                                });
+
+                            });
+
+                        </script>
                     </div>
                 </div>
             </div>

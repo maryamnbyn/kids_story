@@ -32,12 +32,14 @@ class StoryController extends Controller
     public function show(Story $story)
     {
         $images = $story->images()->get('name');
+        $urlImages = null;
+
         foreach ($images as $image) {
             $urlImages[] = URL('') . "/story/pic/" . $image->name;
         }
+
         $data = $story->toArray();
         $data['images'] = $urlImages;
-
 
         return ResponseJson::data($data)->get();
     }
@@ -56,7 +58,7 @@ class StoryController extends Controller
         if ($story_id instanceof Story) {
 
             Favorite::firstOrCreate([
-                    'user_id' => Auth::user()->id ,
+                    'user_id' => Auth::user()->id,
                     'story_id' => $request->story_id]
             );
 
@@ -83,7 +85,7 @@ class StoryController extends Controller
         if ($story_id instanceof Story) {
 
             Download::firstOrCreate([
-                    'user_id' => Auth::user()->id ,
+                    'user_id' => Auth::user()->id,
                     'story_id' => $request->story_id]
             );
 
@@ -110,7 +112,7 @@ class StoryController extends Controller
         if ($story_id instanceof Story) {
 
             Story_History::firstOrCreate([
-                'user_id' => Auth::user()->id ,
+                    'user_id' => Auth::user()->id,
                     'story_id' => $request->story_id]
             );
 

@@ -10,9 +10,9 @@ class Story extends Model
     public $table = "stories";
 
     protected $fillable = [
-        'category_id','name','title', 'writer','publisher','designer','talker','abstract','age','view_count','download_count','pic_name','voice_name'
+        'category_id', 'name', 'title', 'writer', 'publisher', 'designer', 'talker', 'abstract', 'age', 'view_count', 'download_count', 'pic_name', 'voice_name'
     ];
-    protected $appends=['section_body'];
+    protected $appends = ['section_body'];
 
 
     public function comments()
@@ -27,45 +27,44 @@ class Story extends Model
 
     public function favorites()
     {
-        return $this->belongsToMany(User::class,'favorites','story_id','user_id');
+        return $this->belongsToMany(User::class, 'favorites', 'story_id', 'user_id');
     }
 
     public function downloads()
     {
-        return $this->belongsToMany(User::class,'downloads','story_id','user_id');
+        return $this->belongsToMany(User::class, 'downloads', 'story_id', 'user_id');
     }
 
     public function storyHistories()
     {
-        return $this->belongsToMany(User::class,'story_histories','story_id','user_id');
+        return $this->belongsToMany(User::class, 'story_histories', 'story_id', 'user_id');
     }
 
     public function getSectionBodyAttribute()
     {
-        return Str::words($this->abstract,3);
+        return Str::words($this->abstract, 3);
     }
 
-    public function storeFile($pic=null)
-    {     foreach ($pic as $item){
-        if (!empty($item))
-        {
-            $picName = $item->store('public/upload','asset');
-            $storyPic = pathinfo($picName, PATHINFO_BASENAME);
-            $this->images()->create([
-                'name' => $storyPic
-            ]);
+    public function storeFile($pic = null)
+    {
+        foreach ($pic as $item) {
+            if (!empty($item)) {
+                $picName = $item->store('public/upload', 'asset');
+                $storyPic = pathinfo($picName, PATHINFO_BASENAME);
+                $this->images()->create([
+                    'name' => $storyPic
+                ]);
+            }
+
         }
 
-    }
-
 
     }
 
-    public function storeVoice($voice=null)
+    public function storeVoice($voice = null)
     {
-        if (!empty($voice))
-        {
-            $voiceName = $voice->store('public/voice','asset');
+        if (!empty($voice)) {
+            $voiceName = $voice->store('public/voice', 'asset');
             $storyVoice = pathinfo($voiceName, PATHINFO_BASENAME);
             $this->update([
                 'voice_name' => $storyVoice
@@ -73,23 +72,21 @@ class Story extends Model
         }
     }
 
-    public function updateFile($pic=null)
+    public function updateFile($pic = null)
     {
-        if(!empty($pic))
-        {
-            if(!empty($this->pic_name)){
+        if (!empty($pic)) {
+            if (!empty($this->pic_name)) {
 
                 unlink('storage/public/upload/' . $this->pic_name);
-                $picName = $pic->store('public/upload','asset');
+                $picName = $pic->store('public/upload', 'asset');
                 $storyPic = pathinfo($picName, PATHINFO_BASENAME);
 
                 $this->update([
                     'pic_name' => $storyPic
                 ]);
-            }
-            else{
+            } else {
 
-                $picName = $pic->store('/public/upload','asset');
+                $picName = $pic->store('/public/upload', 'asset');
                 $storyPic = pathinfo($picName, PATHINFO_BASENAME);
 
                 $this->update([
@@ -99,23 +96,21 @@ class Story extends Model
         }
     }
 
-    public function updateStore($pic=null)
+    public function updateStore($pic = null)
     {
-        if(!empty($pic))
-        {
-            if(!empty($this->voice_name)){
+        if (!empty($pic)) {
+            if (!empty($this->voice_name)) {
 
                 unlink('storage/public/upload/' . $this->voice_name);
-                $voiceName = $pic->store('public/upload','asset');
+                $voiceName = $pic->store('public/upload', 'asset');
                 $storyVoice = pathinfo($voiceName, PATHINFO_BASENAME);
 
                 $this->update([
                     'voice_name' => $storyVoice
                 ]);
-            }
-            else{
+            } else {
 
-                $voiceName = $pic->store('/public/upload','asset');
+                $voiceName = $pic->store('/public/upload', 'asset');
                 $storyVoice = pathinfo($voiceName, PATHINFO_BASENAME);
 
                 $this->update([
@@ -129,7 +124,6 @@ class Story extends Model
     {
         return $this->downloads()->count();
     }
-
 
 
 }

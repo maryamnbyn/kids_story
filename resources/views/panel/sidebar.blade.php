@@ -12,30 +12,32 @@
         </div>
         <ul class="sidebar-menu">
 
-            <li><a class="sidebar-header" href="/admin/dashboard"><i data-feather="home"></i><span>داشبورد</span></a>
+            <li><a class="sidebar-header" href="/admin/dashboard"><i data-feather="home"></i><span>داشبورد</span></a></li>
 
-            </li>
             <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>داستان</span><i class="fa fa-angle-right pull-left"></i></a>
-                <ul class="sidebar-submenu"
-                style="
-                {{Route::currentRouteName() == 'admin.stories.index' ? 'display:block;' : ''}}
-                {{Route::currentRouteName() == 'admin.stories.create' ? 'display:block;' : ''}}
-                ">
+                <ul class="sidebar-submenu">
 
                     <li><a href="/admin/stories" class=""><i class="fa fa-circle"></i><span>لیست داستان ها</span></a></li>
                     <li><a href="/admin/stories/create" class=""><i class="fa fa-circle"></i><span>افزودن</span></a></li>
 
                 </ul>
             </li>
-            <li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>دسته بندی</span><i class="fa fa-angle-right pull-left"></i></a>
-                <ul class="sidebar-submenu"
-                    style=" ">
 
-                    <li><a href="" class=""><i class="fa fa-circle"></i><span>لیست دسته بندی</span></a></li>
-                    <li><a href="" class=""><i class="fa fa-circle"></i><span>افزودن</span></a></li>
+            <li><a class="sidebar-header" href="/admin/categories/create"><i data-feather="home"></i><span>دسته بندی</span></a></li>
 
-                </ul>
-            </li>
+
+
+
+
+            {{--<li><a class="sidebar-header" href="#"><i data-feather="home"></i><span>دسته بندی</span><i class="fa fa-angle-right pull-left"></i></a>--}}
+                {{--<ul class="sidebar-submenu"--}}
+                    {{--style=" ">--}}
+
+                    {{--<li><a href="/admin/categories/create" class=""><i class="fa fa-circle"></i><span>لیست دسته بندی</span></a></li>--}}
+                    {{--<li><a href="/admin/categories/create" class=""><i class="fa fa-circle"></i><span>افزودن</span></a></li>--}}
+
+                {{--</ul>--}}
+            {{--</li>--}}
             <li><a class="sidebar-header" href="/admin/profile" class="
 "><i data-feather="home"></i><span>مشاهده پروفایل</span></a></li>
 

@@ -11,8 +11,6 @@
 |
 */
 
-use App\Story;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,12 +25,9 @@ Route::group(['as'=>'admin.','namespace' => 'Admin' ,'prefix' => 'admin','middle
 Route::get('/dashboard' ,'AdminController@dashboard');
 Route::get('/profile' ,'AdminController@profile')->name('profile');
     Route::resource('/stories', 'StoryController');
-});
-
+    Route::resource('/categories', 'CategoryController');
+    });
 
 Route::get('/story/pic/{filename}' ,'Admin\StoryController@downloadLink');
 
-
-Route::get('/test' ,function (){
-    dd(\App\Image::find(2)->image_url);
-});
+Route::get('/test' , 'Admin\CategoryController@test');

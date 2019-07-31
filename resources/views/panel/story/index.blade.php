@@ -70,7 +70,7 @@
                                                     <button class="dropdown-item" href="#"
                                                             onClick="deleteme({{$story->id}})">حذف
                                                     </button>
-                                                    <a class="dropdown-item"
+                                                    <a class="-item"
                                                        href="{{ route('admin.stories.edit',['story' =>$story->id ])  }}">ویرایش</a>
                                                 </form>
                                             </td>

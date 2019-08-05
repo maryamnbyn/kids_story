@@ -202,7 +202,7 @@
 
                                                                 <!-- Form builder column wise ends-->
                                                             </div>
-                                                            <br>
+
                                                             <button class="btn btn-primary active"
                                                                     type="submit"
                                                                     data-original-title="btn btn-dark active"

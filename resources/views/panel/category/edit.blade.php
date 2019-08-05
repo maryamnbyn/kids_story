@@ -53,9 +53,11 @@
                             <div class="card-body">
 
                                 {{----}}
-                                <form method="post" action="{{route('admin.categories.store')}}"
+                                <form method="post" action="{{route('admin.categories.update',['category'=>$category->id])}}"
                                       enctype="multipart/form-data">
                                     {!! csrf_field() !!}
+
+                                    @method('PUT')
 
                                     <div class="row">
                                         <div class="col-6"><!--left side -->
@@ -63,7 +65,7 @@
                                                 <label for="input-text-1">نام </label>
                                                 <input class="form-control btn-square" id="input-text-1"
                                                        name="name"
-                                                       type="text" placeholder="متن">
+                                                       type="text" placeholder="متن" value="{{$category->name}}">
                                             </div>
 
                                         </div>
@@ -108,6 +110,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">نام دسته بندی</th>
                                             <th scope="col">عملیات</th>
+                                            <th scope="col">عملیات</th>
 
                                         </tr>
                                         </thead>
@@ -131,14 +134,14 @@
 
                                                     </form>
 
-                                                <script language="javascript">
-                                                    function deleteme(id) {
-                                                        if (confirm("آیا مطمئن هستید؟!")) {
-                                                            window.location.href = 'products.destroy?del=' + id + '';
-                                                            return true;
+                                                    <script language="javascript">
+                                                        function deleteme(id) {
+                                                            if (confirm("آیا مطمئن هستید؟!")) {
+                                                                window.location.href = 'products.destroy?del=' + id + '';
+                                                                return true;
+                                                            }
                                                         }
-                                                    }
-                                                </script>
+                                                    </script>
                                                 </td>
                                         </tr>
                                         @endforeach
@@ -156,6 +159,12 @@
 
         </div>
     </div>
+    @include('panel.footer')
+</div>
+
+
+<!-- latest jquery-->
+@include('panel.footer_scripts')
 </body>
 
 </html>

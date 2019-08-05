@@ -33,7 +33,7 @@
                                 <h5>داستان ها</h5>
                             </div>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -67,10 +67,10 @@
                                                       method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="dropdown-item" href="#"
+                                                    <button class="btn btn-danger btn-sm" href="#"
                                                             onClick="deleteme({{$story->id}})">حذف
                                                     </button>
-                                                    <a class="-item"
+                                                    <a class="btn btn-secondary btn-sm"
                                                        href="{{ route('admin.stories.edit',['story' =>$story->id ])  }}">ویرایش</a>
                                                 </form>
                                             </td>

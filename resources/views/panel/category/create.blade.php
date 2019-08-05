@@ -99,7 +99,7 @@
                             <div class="card-header">
                                 <h5>لیست همه ی دسته بندی ها</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-center">
 
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered">
@@ -108,7 +108,6 @@
                                             <th scope="col">#</th>
                                             <th scope="col">نام دسته بندی</th>
                                             <th scope="col">عملیات</th>
-                                            <th scope="col">عملیات</th>
 
                                         </tr>
                                         </thead>
@@ -116,8 +115,7 @@
                                         <tbody >
                                         <tr>
                                             @foreach($categories as $category)
-                                                <th scope="row"></th>
-                                                <td>{{$category->id}}</td>
+                                                <th scope="row">{{$category->id}}</th>
                                                 <td>{{$category->name}}</td>
                                                 <td>
                                                     <form method="post" action="{{ route('admin.categories.destroy' , ['category' =>$category->id ]) }}">

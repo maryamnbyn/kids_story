@@ -1,14 +1,14 @@
 <div class="page-sidebar sidebar-pattern6">
     <div class="main-header-left d-none d-lg-block">
-        <div class="logo-wrapper"><a href="index.html"><img src="{{asset('assets/images/endless-logo.png')}}" alt=""></a></div>
+        <div class="logo-wrapper"><a href="#"><img src="{{asset('assets/images/endless-logo.png')}}" alt=""></a></div>
     </div>
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">
             <div><img class="img-60 rounded-circle" src="{{asset('assets/images/user/1.jpg')}}" alt="#">
                 <div class="profile-edit"><a href="edit-profile.html" target="_blank"><i data-feather="edit"></i></a></div>
             </div>
-            <h6 class="mt-3 f-14">پارادایم</h6>
-            <p>مدیر کل.</p>
+            <h6 class="mt-3 f-14">قصه های کودک</h6>
+            <p>مریم نبیان</p>
         </div>
         <ul class="sidebar-menu">
 

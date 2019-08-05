@@ -19,8 +19,7 @@ class CategoryController extends Controller
     {
         
     }
-
-
+    
     public function store(storeCategoryRequest $request)
     {
         Category::create([
@@ -38,10 +37,20 @@ class CategoryController extends Controller
         }
     }
 
-    public function test()
+    public function edit(Category $category)
     {
         $categories = Category::all();
-        return view('panel.category.a', compact('categories'));
+        return view('panel.category.edit', compact('category','categories'));
     }
+
+    public function update(Request $request, Category $category)
+    {
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('admin.categories.create');
+    }
+    
 
 }

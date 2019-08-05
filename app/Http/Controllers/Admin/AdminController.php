@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('panel.dashboard');
+        return view('panel.admin.index');
     }
     public function profile()
     {

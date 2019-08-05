@@ -25,11 +25,11 @@
                         <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20">
-                        <li><a href="#"><i data-feather="user"></i>ویرایش پروفایل</a></li>
-                        <li><a href="#"><i data-feather="mail"></i>                                    صندوق ورودی</a></li>
-                        <li><a href="#"><i data-feather="lock"></i>                                    قفل صفحه</a></li>
-                        <li><a href="#"><i data-feather="settings"></i>                                    تنظیمات</a></li>
-                        <li><a href="#"><i data-feather="log-out"></i>                                    خروج</a></li>
+                        <li><a href="/admin/profile"><i data-feather="user"></i>ویرایش پروفایل</a></li>
+                        </a></li>
+                        <li><a class="sidebar-header"  href="/login"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                            ><i data-feather="home"></i><span>خروج از حساب کاربری</span></a>
                     </ul>
                 </li>
             </ul>

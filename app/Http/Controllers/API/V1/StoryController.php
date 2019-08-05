@@ -31,17 +31,7 @@ class StoryController extends Controller
 
     public function show(Story $story)
     {
-        $images = $story->images()->get('name');
-        $urlImages = null;
-
-        foreach ($images as $image) {
-            $urlImages[] = URL('') . "/story/pic/" . $image->name;
-        }
-
-        $data = $story->toArray();
-        $data['images'] = $urlImages;
-
-        return ResponseJson::data($data)->get();
+        return ResponseJson::data($story)->get();
     }
 
     public function index()
@@ -59,7 +49,8 @@ class StoryController extends Controller
 
             Favorite::firstOrCreate([
                     'user_id' => Auth::user()->id,
-                    'story_id' => $request->story_id]
+                    'story_id' => $request->story_id
+                ]
             );
 
             return ResponseJson::get();

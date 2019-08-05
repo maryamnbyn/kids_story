@@ -2,6 +2,7 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -10,9 +11,10 @@ class Story extends Model
     public $table = "stories";
 
     protected $fillable = [
-        'category_id', 'name', 'title', 'writer', 'publisher', 'designer', 'talker', 'abstract', 'age', 'view_count', 'download_count', 'pic_name', 'voice_name'
+        'category_id', 'name',
+        'title', 'writer', 'publisher', 'designer', 'talker', 'abstract', 'age', 'view_count', 'download_count', 'pic_name', 'voice_name'
     ];
-    protected $appends = ['section_body'];
+    protected $appends = ['section_body','images'];
 
 
     public function comments()
@@ -57,8 +59,13 @@ class Story extends Model
             }
 
         }
+    }
 
-
+    public function getImagesAttribute()
+    {
+        return $this->images()->get()->map(function($image) {
+            return $urlImages[] = URL('') . "/story/pic/" . $image->name;
+        });
     }
 
     public function storeVoice($voice = null)

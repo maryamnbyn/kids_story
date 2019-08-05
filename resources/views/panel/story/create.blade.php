@@ -129,31 +129,6 @@
                                                                 </div>
 
                                                                 <br>
-                                                                {{--<div class="col-md-12 droppable sortable ui-droppable ui-sortable">--}}
-                                                                {{--<div class="form-group draggable ui-draggable ui-draggable-handle dropped"--}}
-                                                                {{--style="">--}}
-                                                                {{--<div class="form-group draggable">--}}
-                                                                {{--<label for="input-file-1">دریافت--}}
-                                                                {{--تصویر داستان</label>--}}
-                                                                {{--<input id="input-file-1"--}}
-                                                                {{--type="file"--}}
-                                                                {{--data-original-title=""--}}
-                                                                {{--title="" name="storyPic">--}}
-
-                                                                {{--</div>--}}
-                                                                {{--<br>--}}
-                                                                {{--<button class="btn btn-primary active"--}}
-                                                                {{--type="submit"--}}
-                                                                {{--data-original-title="btn btn-dark active"--}}
-                                                                {{--title="">ثبت--}}
-                                                                {{--</button>--}}
-
-                                                                {{--</div>--}}
-                                                                {{--<div class="col-md-6 droppable sortable ui-droppable ui-sortable"--}}
-                                                                {{--style="display: none;"></div>--}}
-                                                                {{--<div class="col-md-6 droppable sortable ui-droppable ui-sortable"--}}
-                                                                {{--style="display: none;"></div>--}}
-                                                                {{--</div>--}}
                                                                 <label for="input-file-1">دریافت تصویر
                                                                     داستان</label>
                                                                 <div class="input-group control-group increment" >
@@ -197,11 +172,11 @@
 
                         <!-- Container-fluid Ends-->
                     </div>
-                    @include('panel.footer')
+
                 </div>
             </div>
             <!-- latest jquery-->
-        @include('panel.footer_scripts')
+
         <!-- Plugin used-->
             <script type="text/javascript">
 

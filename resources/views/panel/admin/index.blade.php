@@ -23,62 +23,74 @@
 @section('body')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-8 xl-100">
+            <div class="col-xl-12 xl-100">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
+
+                    <div class="col-xl-4 xl-100">
+                        <div class="card bg-primary">
                             <div class="card-body">
-                                <div class="chart-widget-dashboard">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 mb-0 f-w-600"><i data-feather="dollar-sign"></i><span class="counter">5789</span></h5>
-                                            <p>مجموع بازدید ها</p>
-                                        </div><i data-feather="tag"></i>
+                                <div class="media faq-widgets">
+                                    <div class="media-body">
+                                        <h5>مقالات</h5>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
+                                            ابزارهای کاربردی می باشد..</p>
                                     </div>
-                                    <div class="dashboard-chart-container">
-                                        <div class="small-chart-gradient-1"></div>
-                                    </div>
+                                    <i data-feather="file-text"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
+
+                    <div class="col-xl-4 xl-100">
+                        <div class="card bg-primary">
                             <div class="card-body">
-                                <div class="chart-widget-dashboard">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 mb-0 f-w-600"><i data-feather="dollar-sign"></i><span class="counter">4986</span></h5>
-                                            <p>کل فروش</p>
-                                        </div><i data-feather="shopping-cart"></i>
+                                <div class="media faq-widgets">
+                                    <div class="media-body">
+                                        <h5>مقالات</h5>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
+                                            ابزارهای کاربردی می باشد..</p>
                                     </div>
-                                    <div class="dashboard-chart-container">
-                                        <div class="small-chart-gradient-2"></div>
-                                    </div>
+                                    <i data-feather="file-text"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
+
+                    <div class="col-xl-4 xl-100">
+                        <div class="card bg-primary">
                             <div class="card-body">
-                                <div class="chart-widget-dashboard">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 mb-0 f-w-600"><i data-feather="dollar-sign"></i><span class="counter">8568</span></h5>
-                                            <p>ارزش کل</p>
-                                        </div><i data-feather="sun"></i>
+                                <div class="media faq-widgets">
+                                    <div class="media-body">
+                                        <h5>مقالات</h5>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                            طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                            لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
+                                            ابزارهای کاربردی می باشد..</p>
                                     </div>
-                                    <div class="dashboard-chart-container">
-                                        <div class="small-chart-gradient-3"></div>
-                                    </div>
+                                    <i data-feather="file-text"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @include('panel.chart')
+
 
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">نمودار نمایش کاربران</div>
+                            <div class="card-body">
+                                @include('panel.chart')
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

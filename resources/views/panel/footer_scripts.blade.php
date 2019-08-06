@@ -9,9 +9,9 @@
 <script src="{{asset('assets/js/sidebar-menu.js')}}"></script>
 <script src="{{asset('assets/js/config.js')}}"></script>
 <!-- Plugins JS start-->
-<script src="{{asset('assets/js/chart/chartist/chartist.js')}}"></script>
-<script src="{{asset('assets/js/chart/knob/knob.min.js')}}"></script>
-<script src="{{asset('assets/js/chart/knob/knob-chart.js')}}"></script>
+{{--<script src="{{asset('assets/js/chart/chartist/chartist.js')}}"></script>--}}
+{{--<script src="{{asset('assets/js/chart/knob/knob.min.js')}}"></script>--}}
+{{--<script src="{{asset('assets/js/chart/knob/knob-chart.js')}}"></script>--}}
 <script src="{{asset('assets/js/prism/prism.min.js')}}"></script>
 <script src="{{asset('assets/js/clipboard/clipboard.min.js')}}"></script>
 <script src="{{asset('assets/js/counter/jquery.waypoints.min.js')}}"></script>

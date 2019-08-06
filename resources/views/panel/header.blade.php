@@ -7,17 +7,19 @@
         <div class="nav-right col p-0">
             <ul class="nav-menus">
                 <li>
-                    <form class="form-inline search-form" action="#" method="get">
+
+                    <form class="form-inline search-form" action="{{route('admin.profile.search')}}" method="post">
+                        @csrf
                         <div class="form-group">
                             <div class="Typeahead Typeahead--twitterUsers">
                                 <div class="u-posRelative">
-                                    <input class="Typeahead-input form-control-plaintext" id="demo-input" type="text" name="q" placeholder="جستجو...">
-                                    <div class="spinner-border Typeahead-spinner" role="status"><span class="sr-only">در حال بارگذاری...</span></div><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                    <input class="Typeahead-input form-control-plaintext"  id="demo-input" type="text" name="search" placeholder="جستجو...">
                                 </div>
                                 <div class="Typeahead-menu"></div>
                             </div>
                         </div>
                     </form>
+
                 </li>
 
                 <li class="onhover-dropdown">

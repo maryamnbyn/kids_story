@@ -25,7 +25,7 @@ Route::group(['as'=>'admin.','namespace' => 'Admin' ,'prefix' => 'admin','middle
 Route::get('/dashboard' ,'AdminController@dashboard');
 Route::get('/profile' ,'AdminController@profile')->name('profile');
     Route::post('profile/update/{user}', 'AdminController@update')->name('profile.update');
-
+    Route::post('profile/search', 'AdminController@search')->name('profile.search');
     Route::resource('/stories', 'StoryController');
     Route::resource('/categories', 'CategoryController');
     });

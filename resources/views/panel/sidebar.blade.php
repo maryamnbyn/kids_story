@@ -1,6 +1,6 @@
 <div class="page-sidebar sidebar-pattern6">
     <div class="main-header-left d-none d-lg-block">
-        <div class="logo-wrapper"><a href="#"><img src="{{asset('assets/images/endless-logo.png')}}" alt=""></a></div>
+        <div class="logo-wrapper"><a href="/admin/dashboard"><img src="{{asset('assets/images/endless-logo.png')}}" alt=""></a></div>
     </div>
     <div class="sidebar custom-scrollbar">
         <div class="sidebar-user text-center">

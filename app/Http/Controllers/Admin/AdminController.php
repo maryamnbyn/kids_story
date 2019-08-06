@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Admin;
 use App\Http\Requests\Admin\adminUpdateRequest;
+use App\Story;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,5 +35,13 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        $stories = Story::where('name', 'LIKE', '%' . $request->search . '%')->get();
+
+        return view('panel.story.search' ,compact('stories'));
+
     }
 }

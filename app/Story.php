@@ -2,7 +2,6 @@
 
 namespace App;
 
-use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -11,11 +10,12 @@ class Story extends Model
     public $table = "stories";
 
     protected $fillable = [
-        'category_id', 'name',
-        'title', 'writer', 'publisher', 'designer', 'talker', 'abstract', 'age', 'view_count', 'download_count', 'pic_name', 'voice_name'
+        'category_id', 'name', 'title', 'writer', 'publisher',
+        'designer', 'talker', 'abstract', 'age', 'view_count',
+        'download_count', 'pic_name', 'voice_name'
     ];
-    protected $appends = ['section_body','images'];
 
+    protected $appends = ['section_body', 'images'];
 
     public function comments()
     {
@@ -25,6 +25,11 @@ class Story extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function voice()
+    {
+        return $this->belongsTo(Voice::class);
     }
 
     public function favorites()
@@ -47,24 +52,32 @@ class Story extends Model
         return Str::words($this->abstract, 3);
     }
 
-    public function storeFile($pic = null)
+    public function storeFile($pic = null, $time = null)
     {
-        foreach ($pic as $item) {
+        foreach ($pic as $key => $item) {
             if (!empty($item)) {
                 $picName = $item->store('public/upload', 'asset');
                 $storyPic = pathinfo($picName, PATHINFO_BASENAME);
                 $this->images()->create([
-                    'name' => $storyPic
+                    'name' => $storyPic,
+                    'pic_time' => $time[$key]
                 ]);
             }
-
         }
+
     }
 
     public function getImagesAttribute()
     {
-        return $this->images()->get()->map(function($image) {
+        return $this->images()->get()->map(function ($image) {
             return $urlImages[] = URL('') . "/story/pic/" . $image->name;
+        });
+    }
+
+    public function getVoicesAttribute()
+    {
+        return $this->images()->get()->map(function ($voice) {
+            return $urlImages[] = URL('') . "/story/pic/" . $voice->name;
         });
     }
 
@@ -131,6 +144,5 @@ class Story extends Model
     {
         return $this->downloads()->count();
     }
-
 
 }

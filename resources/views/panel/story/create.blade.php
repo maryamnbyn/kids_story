@@ -131,19 +131,23 @@
                                                                 <br>
                                                                 <label for="input-file-1">دریافت تصویر
                                                                     داستان</label>
+
                                                                 <div class="input-group control-group increment" >
 
                                                                     <input type="file" name="filename[]" class="form-control">
+                                                                    <input type="text" name="time[]" placeholder="time" class="mt-3 form-control">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="clone hide">
                                                                     <div class="control-group input-group" style="margin-top:10px">
-                                                                        <input type="file" name="filename[]" class="form-control">
-                                                                        <div class="input-group-btn">
-                                                                            <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                                                        </div>
+                                                                        <input type="file" name="filename[]" class="form-control mt-2">
+                                                                        <input type="text" name="time[]" placeholder="time" class="mt-3 form-control">
+                                                                        {{--<div class="input-group-btn mt-5">--}}
+                                                                            <button class="btn btn-danger mt-2" type="button"><i class=" glyphicon glyphicon-remove"></i> Remove</button>
+                                                                        {{--</div>--}}
                                                                     </div>
                                                                 </div>
 
@@ -176,7 +180,7 @@
                 </div>
             </div>
             <!-- latest jquery-->
-
+        @include('panel.footer_scripts')
         <!-- Plugin used-->
             <script type="text/javascript">
 

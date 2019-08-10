@@ -34,18 +34,21 @@ class StoryController extends Controller
             'designer' => $request->designer,
             'talker' => $request->talker,
             'abstract' => $request->abstract,
-            'download_link' => 'dkmsdk'
         ]);
 
+        $time = Request()->time;
         $pic = Request()->file('filename');
-        $story->storeFile($pic);
+        $story->storeFile($pic,$time);
 
         $voice = Request()->file('storyVoice');
         $story->storeVoice($voice);
 
+//        $story->storeTime($time);
+
         return redirect()->back();
 
     }
+
 
     public function destroy(Story $story)
     {
@@ -85,9 +88,13 @@ class StoryController extends Controller
         return redirect()->route('admin.stories.index');
     }
 
-    public function downloadLink($filename)
+    public function downloadPicLink($filename)
     {
         return response()->file(public_path('/storage/public/upload/'.$filename));
+    }
 
+    public function downloadVoiceLink($filename)
+    {
+        return response()->file(public_path('/storage/public/voice/'.$filename));
     }
 }

@@ -30,7 +30,9 @@ Route::get('/profile' ,'AdminController@profile')->name('profile');
     Route::resource('/categories', 'CategoryController');
     });
 
-Route::get('/story/pic/{filename}' ,'Admin\StoryController@downloadLink');
+Route::get('/story/pic/{filename}' ,'Admin\StoryController@downloadPicLink');
+Route::get('/story/voice/{filename}' ,'Admin\StoryController@downloadVoiceLink');
+
 
 
 

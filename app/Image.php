@@ -8,7 +8,7 @@ class Image extends Model
 {
     public $table = "images";
     protected $fillable = [
-        'name'
+        'name','pic_time'
     ];
 
 

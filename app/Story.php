@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+
 
 class Story extends Model
 {
@@ -15,7 +17,7 @@ class Story extends Model
         'download_count', 'pic_name', 'voice_name'
     ];
 
-    protected $appends = ['section_body', 'image_details'];
+    protected $appends = ['section_body', 'image_details', 'voice', 'voice_size'];
 
     public function comments()
     {
@@ -25,11 +27,6 @@ class Story extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
-    }
-
-    public function voice()
-    {
-        return $this->belongsTo(Voice::class);
     }
 
     public function favorites()
@@ -79,11 +76,17 @@ class Story extends Model
 
     }
 
-    public function getVoicesAttribute()
+    public function getVoiceSizeAttribute()
     {
-        return $this->images()->get()->map(function ($voice) {
-            return $urlImages[] = URL('') . "/story/pic/" . $voice->name;
-        });
+        if (File::exists(public_path('storage/public/voice/' . $this->voice_name))) {
+
+            return File::size(public_path('storage/public/voice/' . $this->voice_name));
+        }
+    }
+
+    public function getVoiceAttribute()
+    {
+        return $urlVoice = URL('') . "/story/voice/" . $this->voice_name;
     }
 
     public function storeVoice($voice = null)

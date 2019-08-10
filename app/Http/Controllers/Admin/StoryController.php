@@ -43,6 +43,7 @@ class StoryController extends Controller
         $voice = Request()->file('storyVoice');
         $story->storeVoice($voice);
 
+
 //        $story->storeTime($time);
 
         return redirect()->back();
@@ -76,7 +77,6 @@ class StoryController extends Controller
             'designer' => $request->designer,
             'talker' => $request->talker,
             'abstract' => $request->abstract,
-            'download_link' => 'dkmsdk'
         ]);
 
         $pic = Request()->file('storyPic');

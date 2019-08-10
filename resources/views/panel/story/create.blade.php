@@ -29,15 +29,7 @@
                     </div>
                     <div class="card-body form-builder">
                         <div class="form-builder-column">
-                            @if(count($errors))
-                                <div class="alert alert-danger">
-                                    <ui>
-                                        @foreach($errors->all() as $error)
-                                            <li> {{$error}}</li>
-                                        @endforeach
-                                    </ui>
-                                </div>
-                            @endif
+                            @include('panel.errors')
                             <form method="post" action="{{route('admin.stories.store')}}" enctype="multipart/form-data">
                                 {!! csrf_field() !!}
 

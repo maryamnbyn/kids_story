@@ -10,11 +10,7 @@ use App\Http\Requests\story\historyStoryRequest;
 use App\Http\Requests\story\searchRequest;
 use App\Story;
 use App\Story_History;
-use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use ResponseJson;
 

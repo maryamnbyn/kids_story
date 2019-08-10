@@ -15,7 +15,7 @@ class Story extends Model
         'download_count', 'pic_name', 'voice_name'
     ];
 
-    protected $appends = ['section_body', 'images'];
+    protected $appends = ['section_body', 'image_details'];
 
     public function comments()
     {
@@ -67,11 +67,16 @@ class Story extends Model
 
     }
 
-    public function getImagesAttribute()
+    public function getImageDetailsAttribute()
     {
         return $this->images()->get()->map(function ($image) {
-            return $urlImages[] = URL('') . "/story/pic/" . $image->name;
+
+            return [
+                'image' => $urlImages[] = URL('') . "/story/pic/" . $image->name,
+                'time' => $image->pic_time
+            ];
         });
+
     }
 
     public function getVoicesAttribute()

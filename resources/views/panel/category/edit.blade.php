@@ -5,12 +5,12 @@
             <div class="row">
                 <div class="col">
                     <div class="page-header-left">
-                        <h3>افزودن داستان جدید</h3>
+                        <h3>افزودن دسته بندی جدید</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a>
                             </li>
-                            <li class="breadcrumb-item">داستان</li>
-                            <li class="breadcrumb-item active">افزودن داستان جدید</li>
+                            <li class="breadcrumb-item">دسته بندی</li>
+                            <li class="breadcrumb-item active">افزودن دسته بندی جدید</li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="card-body">
 
-                        {{----}}
+                        @include('panel.errors')
                         <form method="post" action="{{route('admin.categories.update',['category'=>$category->id])}}"
                               enctype="multipart/form-data">
                             {!! csrf_field() !!}

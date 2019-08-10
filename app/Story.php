@@ -86,7 +86,14 @@ class Story extends Model
 
     public function getVoiceAttribute()
     {
-        return $urlVoice = URL('') . "/story/voice/" . $this->voice_name;
+        if (!empty($this->voice_name)) {
+
+            return $urlVoice = URL('') . "/story/voice/" . $this->voice_name;
+
+        } else {
+            return null;
+        }
+
     }
 
     public function storeVoice($voice = null)

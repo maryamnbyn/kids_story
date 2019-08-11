@@ -37,19 +37,18 @@ class StoryController extends Controller
         ]);
 
         $time = Request()->time;
+        $story_paragraph = Request()->story;
+        $number = Request()->number;
         $pic = Request()->file('filename');
-        $story->storeFile($pic,$time);
+
+        $story->storeFile($pic,$time,$story_paragraph,$number);
 
         $voice = Request()->file('storyVoice');
         $story->storeVoice($voice);
 
-
-//        $story->storeTime($time);
-
         return redirect()->back();
 
     }
-
 
     public function destroy(Story $story)
     {

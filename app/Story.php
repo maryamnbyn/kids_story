@@ -17,7 +17,7 @@ class Story extends Model
         'download_count', 'pic_name', 'voice_name'
     ];
 
-    protected $appends = ['section_body', 'image_details', 'voice', 'voice_size'];
+    protected $appends = ['section_body', 'image_details', 'voice', 'voice_size','story_paragraph'];
 
     public function comments()
     {
@@ -27,6 +27,11 @@ class Story extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function paragraphs()
+    {
+        return $this->hasMany(Paragraph::class);
     }
 
     public function favorites()
@@ -49,7 +54,7 @@ class Story extends Model
         return Str::words($this->abstract, 3);
     }
 
-    public function storeFile($pic = null, $time = null)
+    public function storeFile($pic = null, $time = null, $story_paragraph = null, $number = null)
     {
         foreach ($pic as $key => $item) {
             if (!empty($item)) {
@@ -57,7 +62,17 @@ class Story extends Model
                 $storyPic = pathinfo($picName, PATHINFO_BASENAME);
                 $this->images()->create([
                     'name' => $storyPic,
-                    'pic_time' => $time[$key]
+                    'pic_time' => $time[$key],
+                    'paragraph_number' => $number[$key],
+                ]);
+            }
+        }
+
+        foreach ($story_paragraph as $key => $item) {
+            if (!empty($item)) {
+                $this->paragraphs()->create([
+                    'number' => $number[$key],
+                    'content' => $item,
                 ]);
             }
         }
@@ -70,7 +85,20 @@ class Story extends Model
 
             return [
                 'image' => $urlImages[] = URL('') . "/story/pic/" . $image->name,
-                'time' => $image->pic_time
+                'time' => $image->pic_time,
+                'paragraph_number' => $image->paragraph_number
+            ];
+        });
+
+    }
+
+    public function getStoryParagraphAttribute()
+    {
+        return $this->paragraphs()->get()->map(function ($paragraph) {
+
+            return [
+                'number' => $paragraph->number,
+                'content' => $paragraph->content,
             ];
         });
 

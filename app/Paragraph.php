@@ -4,12 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Paragraph extends Model
 {
-    public $table = "images";
+   public $table= "paragraphs";
     protected $fillable = [
-        'name','pic_time','paragraph_number'
+        'number','content'
     ];
-
-
 }

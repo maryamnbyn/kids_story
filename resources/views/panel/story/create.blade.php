@@ -107,6 +107,23 @@
 
                                                     </select>
                                                     <br>
+
+                                                    <label for="input-file-1">دریافت
+                                                        داستان</label>
+
+                                                    <div class="input-group control-group-story increment-story" >
+
+                                                        <input type="text" name="story[]" class="form-control">
+                                                        <input type="text" name="number[]" placeholder="pargraph_number" class="mt-3 form-control">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-success btn-story" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <br>
+
                                                     <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
 
                                                         <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
@@ -124,24 +141,15 @@
                                                                 <label for="input-file-1">دریافت تصویر
                                                                     داستان</label>
 
-                                                                <div class="input-group control-group increment" >
+                                                                <div class="input-group control-group-filename increment-filename" >
 
                                                                     <input type="file" name="filename[]" class="form-control">
                                                                     <input type="text" name="time[]" placeholder="time" class="mt-3 form-control">
                                                                     <div class="input-group-btn">
-                                                                        <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                                                        <button class="btn btn-success btn-filename" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="clone hide">
-                                                                    <div class="control-group input-group" style="margin-top:10px">
-                                                                        <input type="file" name="filename[]" class="form-control mt-2">
-                                                                        <input type="text" name="time[]" placeholder="time" class="mt-3 form-control">
-                                                                        {{--<div class="input-group-btn mt-5">--}}
-                                                                            <button class="btn btn-danger mt-2" type="button"><i class=" glyphicon glyphicon-remove"></i> Remove</button>
-                                                                        {{--</div>--}}
-                                                                    </div>
-                                                                </div>
 
                                                             </div>
 
@@ -174,18 +182,55 @@
             <!-- latest jquery-->
         @include('panel.footer_scripts')
         <!-- Plugin used-->
+
+            <div class="hidden">
+                <div class="clone-story">
+                    <div class="control-group-story input-group" style="margin-top:10px">
+                        <input type="text" name="story[]" class="form-control mt-2">
+                        <input type="text" name="number[]" placeholder="pargraph_number" class="mt-3 form-control">
+                        {{--<div class="input-group-btn mt-5">--}}
+                        <button class="btn btn-danger mt-2 remove-story" type="button"><i class=" glyphicon glyphicon-remove"></i> Remove</button>
+                        {{--</div>--}}
+                    </div>
+                </div>
+
+                <div class="clone-filename">
+                    <div class="control-group-filename input-group" style="margin-top:10px">
+                        <input type="file" name="filename[]" class="form-control">
+                        <input type="text" name="time[]" placeholder="time" class="mt-3 form-control">
+
+                        {{--<div class="input-group-btn mt-5">--}}
+                        <button class="btn btn-danger mt-2 remove-filename" type="button"><i class=" glyphicon glyphicon-remove"></i> Remove</button>
+                        {{--</div>--}}
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <script type="text/javascript">
 
 
                 $(document).ready(function() {
 
-                    $(".btn-success").click(function(){
-                        var html = $(".clone").html();
-                        $(".increment").after(html);
+
+                    $(".btn-story").click(function(){
+                        var story_html = $(".clone-story").html();
+                        $(".increment-story").after(story_html);
                     });
 
-                    $("body").on("click",".btn-danger",function(){
-                        $(this).parents(".control-group").remove();
+                    $("body").on("click",".remove-story",function(){
+                        $(this).parents(".control-group-story").remove();
+                    });
+
+                    $(".btn-filename").click(function(){
+                        var filename_html = $(".clone-filename").html();
+                        $(".increment-filename").after(filename_html);
+                    });
+
+                    $("body").on("click",".remove-filename",function(){
+                        $(this).parents(".control-group-filename").remove();
                     });
 
                 });

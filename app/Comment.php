@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public $table = 'comments' ;
-    protected  $fillable = ['user_id','story_id','body'];
-    protected  $appends = ['user_name'];
+    public $table = 'comments';
+    protected $fillable = ['user_id', 'story_id', 'body'];
+    protected $appends = ['user_name'];
 
     public function zip()
     {
@@ -30,5 +30,7 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-}
+    }
+
+
 }

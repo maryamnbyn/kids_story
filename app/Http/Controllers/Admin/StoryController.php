@@ -38,6 +38,7 @@ class StoryController extends Controller
 
         $time = Request()->time;
         $story_paragraph = Request()->story;
+
         $number = Request()->number;
         $pic = Request()->file('filename');
 

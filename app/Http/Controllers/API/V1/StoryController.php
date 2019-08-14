@@ -116,6 +116,7 @@ class StoryController extends Controller
         $user = auth()->user()->storyHistories->take(3)->map(function ($item) {
             return collect($item)->except(['pivot'])->toArray();
         });
+
         return ResponseJson::data($user)->get();
     }
 

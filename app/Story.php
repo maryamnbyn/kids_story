@@ -17,7 +17,7 @@ class Story extends Model
         'download_count', 'pic_name', 'voice_name'
     ];
 
-    protected $appends = ['section_body', 'image_details', 'voice', 'voice_size','story_paragraph'];
+    protected $appends = ['section_body','comment', 'image_details', 'voice', 'voice_size','story_paragraph'];
 
     public function comments()
     {
@@ -57,8 +57,9 @@ class Story extends Model
     public function storeFile($pic = null, $time = null, $story_paragraph = null, $number = null)
     {
         foreach ($pic as $key => $item) {
+
             if (!empty($item)) {
-                $picName = $item->store('public/upload', 'asset');
+                $picName = $item->storeAs('public/upload', 'asset');
                 $storyPic = pathinfo($picName, PATHINFO_BASENAME);
                 $this->images()->create([
                     'name' => $storyPic,
@@ -91,6 +92,18 @@ class Story extends Model
         });
 
     }
+
+    public function getCommentAttribute()
+{
+    return $this->comments()->get()->map(function ($comment) {
+
+        return [
+            'user name' => $comment->user_name,
+            'comment' => $comment->body,
+        ];
+    });
+
+}
 
     public function getStoryParagraphAttribute()
     {
